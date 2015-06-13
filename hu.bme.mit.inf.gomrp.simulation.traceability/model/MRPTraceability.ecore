@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="MRPTraceability" nsURI="hu.bme.mit.inf.gomrp.simulation.traceability"
+    nsPrefix="hu.bme.mit.inf.gomrp.simulation.traceability">
+  <eClassifiers xsi:type="ecore:EClass" name="TraceabilityModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targets" upperBound="-1"
+        eType="#//TargetElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sources" upperBound="-1"
+        eType="#//SourceElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="types" upperBound="-1"
+        eType="#//ReferredTypedElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SourceElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        upperBound="-1" eType="#//TargetElement" eOpposite="#//TargetElement/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceRDMElement" upperBound="-1"
+        eType="ecore:EClass ../../hu.bme.mit.inf.gomrp.railway/model/Railway.ecore#//RDMElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceSMElement" upperBound="-1"
+        eType="ecore:EClass ../../hu.bme.mit.inf.gomrp.statemachine/model/StateMachine.ecore#//NamedElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TargetElement" abstract="true" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        upperBound="-1" eType="#//SourceElement" eOpposite="#//SourceElement/target"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TargetPackage" eSuperTypes="#//TargetElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TargetClassifier" abstract="true" eSuperTypes="#//TargetElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="isIn" eType="#//TargetPackage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="isInSpecial" eType="#//ReferredTypedElement"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" lowerBound="1"
+        eType="#//ClassifierVisibility" defaultValueLiteral="PUBLIC"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
+        eType="#//TargetMember" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Visibility">
+    <eLiterals name="PUBLIC"/>
+    <eLiterals name="PRIVATE" value="1"/>
+    <eLiterals name="PROTECTED" value="3"/>
+    <eLiterals name="PACKAGE" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ClassifierVisibility">
+    <eLiterals name="PUBLIC"/>
+    <eLiterals name="PACKAGE" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TargetClass" eSuperTypes="#//TargetClassifier #//ModifieredElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extendsCls" eType="#//TargetClass"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implInterface" upperBound="-1"
+        eType="#//TargetInterface"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extendsSpecial" eType="#//ReferredTypedElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implementsSpecial" upperBound="-1"
+        eType="#//ReferredTypedElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Modifier">
+    <eLiterals name="NONE"/>
+    <eLiterals name="FINAL" value="1"/>
+    <eLiterals name="ABSTRACT" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TargetInterface" eSuperTypes="#//TargetClassifier">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extendsInterface" upperBound="-1"
+        eType="#//TargetInterface"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extendsSpecial" upperBound="-1"
+        eType="#//ReferredTypedElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReferredTypedElement" eSuperTypes="#//TypedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TargetMember" abstract="true" eSuperTypes="#//TypedElement #//ModifieredElement #//TargetElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" lowerBound="1"
+        eType="#//Visibility" defaultValueLiteral="PUBLIC"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TargetField" eSuperTypes="#//TargetMember"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TargetMethod" eSuperTypes="#//TargetMember">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//TargetParameter" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TargetParameter" eSuperTypes="#//TypedElement #//TargetElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ModifieredElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modifier" lowerBound="1"
+        eType="#//Modifier" defaultValueLiteral="NONE"/>
+  </eClassifiers>
+</ecore:EPackage>

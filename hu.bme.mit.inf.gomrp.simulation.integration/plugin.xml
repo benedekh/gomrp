@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu">
+         <command
+               commandId="hu.bme.mit.inf.gomrp.simulation.command.simulate"
+               icon="icons/train_with_route.png"
+               label="Simulate Model"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeMenuSelection">
+                  <iterate>
+                     <adapt
+                           type="org.eclipse.core.resources.IFile">
+                        <test
+                              property="org.eclipse.core.resources.extension"
+                              value="rdm">
+                        </test>
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+ <extension
+       point="org.eclipse.ui.commands">
+    <command
+          id="hu.bme.mit.inf.gomrp.simulation.command.simulate"
+          name="SimulateModel">
+    </command>
+ </extension>
+ <extension
+       point="org.eclipse.ui.handlers">
+    <handler
+          class="hu.bme.mit.inf.gomrp.simulation.integration.SimulateModel"
+          commandId="hu.bme.mit.inf.gomrp.simulation.command.simulate">
+    </handler>
+ </extension>
+ <extension
+       point="org.eclipse.ui.views">
+    <category
+          id="hu.bme.mit.inf.gomrp.simulation.integration.view.category"
+          name="MRP Simulation">
+    </category>
+    <view
+          category="hu.bme.mit.inf.gomrp.simulation.integration.view.category"
+          class="hu.bme.mit.inf.gomrp.simulation.integration.ui.SimulationSettings"
+          id="hu.bme.mit.inf.gomrp.simulation.integration.view.settings"
+          name="Simulation Settings"
+          restorable="true">
+    </view>
+ </extension>
+
+</plugin>

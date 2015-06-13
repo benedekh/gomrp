@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="stateMachineDSL" nsURI="http://www.bme.hu/mit/inf/gomrp/statemachine/dsl/text/StateMachineDSL"
+    nsPrefix="stateMachineDSL">
+  <eClassifiers xsi:type="ecore:EClass" name="Include">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="filename" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TrainCurrentHeadingSpeed" eSuperTypes="platform:/resource/hu.bme.mit.inf.gomrp.statemachine/model/StateMachine.ecore#//Guard"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TrainCurrentlyStandsOn" eSuperTypes="platform:/resource/hu.bme.mit.inf.gomrp.statemachine/model/StateMachine.ecore#//Guard"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TurnoutCurrentDirection" eSuperTypes="platform:/resource/hu.bme.mit.inf.gomrp.statemachine/model/StateMachine.ecore#//Guard"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SignalCurrentAllowedSpeed" eSuperTypes="platform:/resource/hu.bme.mit.inf.gomrp.statemachine/model/StateMachine.ecore#//Guard"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NextTrackElementIs" eSuperTypes="platform:/resource/hu.bme.mit.inf.gomrp.statemachine/model/StateMachine.ecore#//Guard"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TurnoutHasDesiredDirection" eSuperTypes="platform:/resource/hu.bme.mit.inf.gomrp.statemachine/model/StateMachine.ecore#//Guard"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StateMachineBehavioralModel" eSuperTypes="platform:/resource/hu.bme.mit.inf.gomrp.statemachine/model/StateMachine.ecore#//StateMachineBehavioralModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="includes" upperBound="-1"
+        eType="#//Include" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

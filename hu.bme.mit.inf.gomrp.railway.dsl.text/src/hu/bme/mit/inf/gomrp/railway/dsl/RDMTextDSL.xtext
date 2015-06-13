@@ -1,0 +1,70 @@
+grammar hu.bme.mit.inf.gomrp.railway.dsl.RDMTextDSL with org.eclipse.xtext.common.Terminals
+
+import "platform:/resource/hu.bme.mit.inf.gomrp.railway/model/Railway.ecore" as RDM
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+/**
+ * Simple grammar generated from the RailwayDomainModel metamodel.
+ */
+RailwayDomainModel returns RDM::RailwayDomainModel:
+	{RDM::RailwayDomainModel}
+	'RailwayDomainModel'
+	'{'
+	(trains+=Train (trains+=Train)*)?
+	(sections+=Section (sections+=Section)*)?
+	(turnouts+=Turnout (turnouts+=Turnout)*)?
+	(editorCP+=ConnectionPoint (editorCP+=ConnectionPoint)*)?
+	(editorSignal+=Signal (editorSignal+=Signal)*)?
+	(editorTDD+=TurnoutDesiredDirection (editorTDD+=TurnoutDesiredDirection)*)?
+	(editorRoute+=Route (editorRoute+=Route)*)?
+	(editorRouteElement+=RouteElement (editorRouteElement+=RouteElement)*)?
+	'}';
+
+Section returns RDM::Section:
+	Section_Impl | Station;
+
+Signal returns RDM::Signal:
+	Signal_Impl | TurnoutSignal;
+
+Train returns RDM::Train:
+	'Train'
+	name=ID;
+
+Section_Impl returns RDM::Section:
+	'Section'
+	name=ID;
+
+Turnout returns RDM::Turnout:
+	'Turnout'
+	name=ID;
+
+ConnectionPoint returns RDM::ConnectionPoint:
+	'ConnectionPoint'
+	name=ID;
+
+Signal_Impl returns RDM::Signal:
+	'Signal'
+	name=ID;
+
+TurnoutDesiredDirection returns RDM::TurnoutDesiredDirection:
+	'TurnoutDesiredDirection'
+	name=ID;
+
+Route returns RDM::Route:
+	'Route'
+	name=ID;
+
+RouteElement returns RDM::RouteElement:
+	'RouteElement'
+	name=EString;
+
+EString returns ecore::EString:
+	STRING | ID;
+
+Station returns RDM::Section:
+	'Station'
+	name=ID;
+
+TurnoutSignal returns RDM::TurnoutSignal:
+	'TurnoutSignal'
+	name=ID;

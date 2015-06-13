@@ -1,0 +1,373 @@
+package hu.bme.mit.inf.gomrp.railway.incquery
+
+import "hu.bme.mit.inf.gomrp.railway"
+
+/**
+ * IncQuery derived features (D), constraints (C), other (O) and helper patterns for the RailwayDomainModel.
+ */
+
+/*
+ * ID: O1
+ */
+pattern routeElement(element : RouteElement) {
+	RouteElement(element);
+}
+
+/*
+ * ID: O2
+ */
+pattern train(train : Train) {
+	Train(train);
+}
+
+/*
+ * ID: O3
+ */
+pattern section(section : Section) {
+	Section(section);
+	neg find station(section);
+}
+
+/*
+ * ID: O4
+ */
+pattern station(station : Station) {
+	Station(station);
+}
+
+/*
+ * ID: O5
+ */
+pattern turnout(turnout : Turnout) {
+	Turnout(turnout);
+}
+
+/*
+ * ID: O6
+ */
+pattern signal(signal : Signal) {
+	Signal(signal);
+	neg find turnoutSignal(signal);
+}
+
+/*
+ * ID: O7
+ */
+pattern turnoutSignal(turnoutSignal : TurnoutSignal) {
+	TurnoutSignal(turnoutSignal);
+}
+
+/*
+ * ID: D1
+ */
+@QueryBasedFeature
+pattern controls(This : Station, Target : Signal) {
+	Station.connectsTo.holds(This, Target);
+}
+
+/*
+ * ID: D2
+ */
+@QueryBasedFeature
+pattern referredTurnout(This : TurnoutDesiredDirection, Target : Turnout) {
+	TurnoutDesiredDirection.routeElement.referredElement(This, Target);
+}
+
+/*
+ * ID: D3
+ */
+@QueryBasedFeature
+pattern observes(This : Signal, Target : TrackElement) {
+	Signal.standsOn.nextElement(This, Target);
+}
+
+/*
+ * ID: C1
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Element must have a name!", location = e)
+pattern elementWithoutName(e : RDMElement) {
+	neg find elementWithName(e, _);
+}
+
+/*
+ * ID: C2
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Element name $commonName$ must be unique!", location = e1)
+pattern namesMustBeUnique(e1 : RDMElement, e2 : RDMElement, commonName) {
+	find elementWithName(e1, commonName);
+	find elementWithName(e2, commonName);
+	e1 != e2;
+}
+
+/*
+  * ID: C3
+  */
+@Constraint(targetEditorId = "*", severity = "warning", message = "Track not closed.", location = e)
+pattern trackNotClosed(e : TrackElement) {
+	neg find trackClosed(e);
+}
+
+/*
+ * ID: C4
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Train $t.name$ must stand on a TrackElement!", location = t)
+pattern trainNotOnTrackElement(t : Train) {
+	find elementWithName(t, _);
+	neg find trainStandsOn(t, _);
+}
+
+/*
+ * ID: C5 
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Train $t.name$ cannot stand on more than 2 TrackElements at a time!", location = t)
+pattern trainOnAtMostTwoTrackElements(t : Train) {
+	N == count find trainStandsOn(t, _e);
+	check(N > 2);
+}
+
+/*
+ * ID: C6
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Trains $t1.name$ and $t2.name$ not allowed on same Track Element!", location = e)
+pattern trainsOnSameTrackElement(t1 : Train, t2 : Train, e : TrackElement) {
+	Train.standsOn(t1, e);
+	Train.standsOn(t2, e);
+	Train.name(t1, name1);
+	Train.name(t2, name2);
+	t1 != t2;
+	check(name1 > name2);
+}
+
+/*
+ * ID: C10
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Turnout $t.name$'s switchingDirection can either be LEFT or RIGHT!", location = t)
+pattern turnoutSwitchingDirection(t : Turnout) {
+	Turnout.switchingDirection(t, dir);
+	check(dir.toString()
+	== "STRAIGHT");
+}
+
+/*
+ * ID: C12
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Current direction of Turnout $t.name$ must be either STRAIGHT or the value of its switchingDirection property!", location = t)
+pattern turnoutCurrentDirection(t : Turnout) {
+	Turnout.currentDirection(t, dir1);
+	Turnout.switchingDirection(t, dir2);
+	check(dir1 != dir2 && dir1.toString()
+	!= "STRAIGHT");
+}
+
+/*
+ * ID: C13
+ * Removed, because it is the simulator's responsibility to be satisfied.
+ */
+//@Constraint(targetEditorId = "*", severity = "error", message = "DesiredDirection of TurnoutDesiredDirection $tdd.name$  must be equal to the referred Turnout's currentDirection!", location = tdd)
+//pattern
+//desiredDirectionOfTDD(e : RouteElement, tdd : TurnoutDesiredDirection) {
+//	RouteElement.referredElement(e, t);
+//	RouteElement.desiredDirection(e, tdd);
+//	TurnoutDesiredDirection.desiredDirection(tdd, dir1);
+//	Turnout(t);
+//	Turnout.currentDirection(t, dir2);
+//	dir1 != dir2;
+//}
+
+/*
+ * ID: C14
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Desired direction of TurnoutDesiredDirecton $tdd.name$ must be either STRAIGHT or the value of its referedTurnout's $t.name$ switchingDirection!", location = tdd)
+pattern turnoutDesiredDirection(tdd : TurnoutDesiredDirection, t : Turnout) {
+	TurnoutDesiredDirection.desiredDirection(tdd, dir1);
+	TurnoutDesiredDirection.routeElement.referredElement(tdd, t);
+	Turnout.switchingDirection(t, dir2);
+	check(dir1 != dir2 && dir1.toString()
+	!= "STRAIGHT");
+}
+
+/*
+ * ID: C15
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "RouteElements $e1.name$ and $e2.name$ should be adjacent because of their corresponding TrackElements!", location = e1)
+pattern adjacentRouteElements(e1 : RouteElement, e2 : RouteElement) {
+	RouteElement.nextElement(e1, e2);
+	RouteElement.referredElement(e1, te1);
+	RouteElement.referredElement(e2, te2);
+	C == count find adjacentTrackElements(te1, te2);
+	C == 0;
+}
+
+/*
+ * ID: C16
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Station $s.name$ of Train $t.name$ not contained in its route!", location = t)
+pattern routeNotContainingArrivalOrDepartureStation(t : Train, s : Station) {
+	find trainWithArrivalStation(t, s);
+	neg find routeElements(_, s);
+} or {
+	find trainWithDepartureStation(t, s);
+	neg find routeElements(_, s);
+}
+
+/*
+ * ID: C17
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Train $t.name$ must follow exactly one route!", location = t)
+pattern trainWithoutRoute(t : Train) {
+	neg find trainFollowsRoute(t, _);
+}
+
+/*
+ * ID: C18
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Train $t.name$ must have both or none of its stations defined!", location = t)
+pattern trainWithoutArrivalOrDepartureStation(t : Train) {
+	find trainWithArrivalStation(t, _);
+	neg find trainWithDepartureStation(t, _);
+} or {
+	neg find trainWithArrivalStation(t, _);
+	find trainWithDepartureStation(t, _);
+}
+
+/*
+ * ID: C20
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Length of TrackElement $e.name$ must be greater than of Train $t.name$!", location = t)
+pattern trackElementsMustBeLongerThanTrains(t : Train, e : TrackElement) {
+	Train.length(t, len1);
+	TrackElement.length(e, len2);
+	check(len1 > len2);
+}
+
+/*
+ * ID: C21
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "TrackElement $s.name$ must connect to either 1 or 2 connectionPoints!", location = s)
+pattern sectionConnectsToMultiplicity(s : Section) {
+	C == count find sectionConnectsToControlPoints(s, _cp);
+	check(C < 1 || C > 2);
+}
+
+/*
+ * ID: C21
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "TrackElement $t.name$ must connect to at least 1 and at most 3 connectionPoints!", location = t)
+pattern turnoutConnectsToMultiplicity(t : Turnout) {
+	C == count find turnoutConnectsToControlPoints(t, _cp);
+	check(C < 1 || C > 3);
+}
+
+/*
+ * ID: C22
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Referred element of $e3.name$ can not be reversed ($rE1.name$ -> $rE2.name$ -> $rE3.name$)!", location = e3)
+pattern
+reversedRouteElements(e3 : RouteElement, rE1 : TrackElement, rE2 : TrackElement, rE3 : TrackElement) {
+	RouteElement.nextElement(e1, e2);
+	RouteElement.nextElement(e2, e3);
+	RouteElement.referredElement(e1, rE1);
+	RouteElement.referredElement(e2, rE2);
+	RouteElement.referredElement(e3, rE3);
+	rE1 == rE3;
+	neg find adjacentFromBothDirections(rE1, rE2);
+}
+
+/*
+ * ID: C23
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "The first element of Route $r.name$ must be its Train ($t.name$) standsOn reference ($e1.name$)!", location = r)
+pattern routeFirstElement(t : Train, r : Route, e1 : TrackElement) {
+	Train.follows(t, r);
+	Train.standsOn(t, e1);
+	Route.firstElement.referredElement(r, e2);
+	e1 != e2;
+}
+
+/*
+ * ID: C24
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "RouteElement's length must be the same as its referred TrackElement's length!", location = r)
+pattern routeElementNotSameLengthAsTrackElement(r : RouteElement) {
+	RouteElement.length(r, len);
+	RouteElement.referredElement.length(r, totalLen);
+	len != totalLen;
+}
+
+// Helper patterns
+@QueryExplorer(checked = false)
+pattern elementWithName(e : RDMElement, name) {
+	RDMElement.name(e, name);
+}
+
+@QueryExplorer(checked = false)
+pattern trainStandsOn(t : Train, e : TrackElement) {
+	Train.standsOn(t, e);
+}
+
+@QueryExplorer(checked = false)
+pattern nextElementOfTrack(source : TrackElement, target : TrackElement) {
+	TrackElement.connectsTo.nextElement(source, target);
+}
+
+@QueryExplorer(checked = false)
+pattern nextElementOfRoute(source : RouteElement, target : RouteElement) {
+	RouteElement.nextElement(source, target);
+}
+
+@QueryExplorer(checked = false)
+pattern trackClosed(e : TrackElement) {
+	find nextElementOfTrack +(e, e);
+}
+
+@QueryExplorer(checked = false)
+pattern trainWithArrivalStation(t : Train, s : Station) {
+	Train.arrivesTo(t, s);
+}
+
+@QueryExplorer(checked = false)
+pattern trainWithDepartureStation(t : Train, s : Station) {
+	Train.departuresFrom(t, s);
+}
+
+@QueryExplorer(checked = false)
+pattern routeElements(source : RouteElement, target : TrackElement) {
+	RouteElement.nextElement.referredElement(source, target);
+} or {
+	Route.firstElement(_, source);
+	RouteElement.referredElement(source, target);
+}
+
+@QueryExplorer(checked = false)
+pattern trainFollowsRoute(t : Train, r : Route) {
+	Train.follows(t, r);
+}
+
+@QueryExplorer(checked = false)
+pattern sectionConnectsToControlPoints(s : Section, cp : ConnectionPoint) {
+	Section.connectsTo(s, cp);
+}
+
+@QueryExplorer(checked = false)
+pattern turnoutConnectsToControlPoints(t : Turnout, cp : ConnectionPoint) {
+	Turnout.connectsTo(t, cp);
+}
+
+@QueryExplorer(checked = false)
+pattern adjacentTrackElements(e1 : TrackElement, e2 : TrackElement) {
+	TrackElement.connectsTo.nextElement(e1, e2);
+}
+
+@QueryExplorer(checked = false)
+pattern adjacentFromBothDirections(e1 : TrackElement, e2 : TrackElement) {
+	find adjacentTrackElements(e1, e2);
+	find adjacentTrackElements(e2, e1);
+}
+
+@QueryExplorer(checked = false)
+pattern routeWithRouteElement(route : Route, routeElement : RouteElement) {
+	Route.firstElement(route, routeElement);
+} or {
+	Route.firstElement(route, firstElement);
+	find nextElementOfRoute +(firstElement, routeElement);
+}

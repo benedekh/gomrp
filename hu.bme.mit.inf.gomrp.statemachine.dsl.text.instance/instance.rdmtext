@@ -1,0 +1,14 @@
+RailwayDomainModel {
+Train Thomas
+Train James
+Section Sec1
+Section Sec2
+Station StationA
+Station StationB
+Turnout Turnout1
+Turnout Turnout2
+TurnoutSignal TSig1
+TurnoutSignal TSig2
+Signal Sig1
+Signal Sig2
+}

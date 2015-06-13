@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.simulation.traceability.incquery.interfaceHasOnlyPublicMembers" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.simulation.traceability.incquery.InterfaceHasOnlyPublicMembersConstraint0" name="hu.bme.mit.inf.gomrp.simulation.traceability.incquery.interfaceHasOnlyPublicMembers">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.simulation.traceability.MRPTraceability.presentation.MRPTraceabilityEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.simulation.traceability.incquery.interfaceHasOnlyFinalFields" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.simulation.traceability.incquery.InterfaceHasOnlyFinalFieldsConstraint0" name="hu.bme.mit.inf.gomrp.simulation.traceability.incquery.interfaceHasOnlyFinalFields">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.simulation.traceability.MRPTraceability.presentation.MRPTraceabilityEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.simulation.traceability.incquery.finalClassShouldHaveNoDescendant" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.simulation.traceability.incquery.FinalClassShouldHaveNoDescendantConstraint0" name="hu.bme.mit.inf.gomrp.simulation.traceability.incquery.finalClassShouldHaveNoDescendant">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.simulation.traceability.MRPTraceability.presentation.MRPTraceabilityEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.simulation.traceability.incquery.interfaceMustHaveOnlyAbstractMethods" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.simulation.traceability.incquery.InterfaceMustHaveOnlyAbstractMethodsConstraint0" name="hu.bme.mit.inf.gomrp.simulation.traceability.incquery.interfaceMustHaveOnlyAbstractMethods">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.simulation.traceability.MRPTraceability.presentation.MRPTraceabilityEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.simulation.traceability.incquery.classifierMustHaveOnlyOnePackage" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.simulation.traceability.incquery.ClassifierMustHaveOnlyOnePackageConstraint0" name="hu.bme.mit.inf.gomrp.simulation.traceability.incquery.classifierMustHaveOnlyOnePackage">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.simulation.traceability.MRPTraceability.presentation.MRPTraceabilityEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.simulation.traceability.incquery.classExtendsAtMostOneClass" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.simulation.traceability.incquery.ClassExtendsAtMostOneClassConstraint0" name="hu.bme.mit.inf.gomrp.simulation.traceability.incquery.classExtendsAtMostOneClass">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.simulation.traceability.MRPTraceability.presentation.MRPTraceabilityEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.simulation.traceability.incquery.classCannotBeItselvesDescendant" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.simulation.traceability.incquery.ClassCannotBeItselvesDescendantConstraint0" name="hu.bme.mit.inf.gomrp.simulation.traceability.incquery.classCannotBeItselvesDescendant">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.simulation.traceability.MRPTraceability.presentation.MRPTraceabilityEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.simulation.traceability.incquery.interfaceCannotBeItselvesDescendant" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.simulation.traceability.incquery.InterfaceCannotBeItselvesDescendantConstraint0" name="hu.bme.mit.inf.gomrp.simulation.traceability.incquery.interfaceCannotBeItselvesDescendant">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.simulation.traceability.MRPTraceability.presentation.MRPTraceabilityEditorID"/>
+    </constraint>
+  </extension>
+</plugin>

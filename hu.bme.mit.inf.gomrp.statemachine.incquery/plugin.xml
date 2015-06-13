@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="extension.derived.hu.bme.mit.inf.gomrp.statemachine.incquery.activeState" point="org.eclipse.incquery.runtime.base.wellbehaving.derived.features">
+    <wellbehaving-derived-feature classifier-name="StateMachine" feature-name="activeState" package-nsUri="hu.bme.mit.inf.gomrp.statemachine"/>
+  </extension>
+  <extension id="hu.bme.mit.inf.gomrp.statemachine.incquery.Queries" point="org.eclipse.incquery.runtime.queryspecification">
+    <group group="org.eclipse.incquery.runtime.extensibility.SingletonExtensionFactory:hu.bme.mit.inf.gomrp.statemachine.incquery.Queries" id="hu.bme.mit.inf.gomrp.statemachine.incquery.Queries"/>
+  </extension>
+</plugin>

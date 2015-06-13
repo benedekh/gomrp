@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: hu.bme.mit.inf.gomrp.statemachine.edit;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: hu.bme.mit.inf.gomrp.statemachine.StateMachine.provider.StateMachineEditPlugin$Implementation
+Bundle-Vendor: GoMRP
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: hu.bme.mit.inf.gomrp.statemachine.StateMachine.provider
+Require-Bundle: org.eclipse.core.runtime,
+ hu.bme.mit.inf.gomrp.statemachine;visibility:=reexport,
+ org.eclipse.emf.edit;visibility:=reexport,
+ hu.bme.mit.inf.gomrp.railway;visibility:=reexport,
+ hu.bme.mit.inf.gomrp.railway.edit;visibility:=reexport
+Bundle-ActivationPolicy: lazy

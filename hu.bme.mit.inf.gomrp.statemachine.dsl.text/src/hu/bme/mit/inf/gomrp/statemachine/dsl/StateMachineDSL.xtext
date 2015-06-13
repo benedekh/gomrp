@@ -1,0 +1,175 @@
+grammar hu.bme.mit.inf.gomrp.statemachine.dsl.text.StateMachineDSL with org.eclipse.xtext.common.Terminals
+
+generate stateMachineDSL "http://www.bme.hu/mit/inf/gomrp/statemachine/dsl/text/StateMachineDSL"
+import "platform:/resource/hu.bme.mit.inf.gomrp.railway/model/Railway.ecore" as RDM
+import "platform:/resource/hu.bme.mit.inf.gomrp.statemachine/model/StateMachine.ecore" as SM
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+/**
+ * Grammar for a StateMachine model.
+ */
+
+//Entry rule
+StateMachineBehavioralModel returns SM::StateMachineBehavioralModel:
+	{StateMachineBehavioralModel}
+	(
+		(includes +=Include)*
+		statemachines+=StateMachine (statemachines+=StateMachine)*
+	)
+;
+
+Include:
+	'include' filename=STRING
+;
+StateMachine returns SM::StateMachine:
+	'StateMachine' name=ID 'for object' referredObject=[RDM::RDMElement|ID]
+		'{'
+		('Actions:' 
+			actions+=Action*
+		 'EndActions'
+		 )?
+		 ('Guards:' 
+			guards+=Guard*
+		 'EndGuards'
+		 )?
+		 ('Triggers:' 
+			triggers+=Trigger*
+		 'EndTriggers'
+		 )?
+		('States:'
+			states+=State*
+		'EndStates'
+		)?
+		('Transitions:'
+			transitions+=Transition*
+		'EndTransitions'
+		)?	
+	'}'
+;
+
+EString returns ecore::EString:
+	STRING | ID;
+	
+Action returns SM::Action:
+	ChangeTrainHeadingSpeed | ChangeSignalAllowedSpeed | ChangeTurnoutDirection | ChangeTrainCurrentTrackElement | ActionExpression_Impl
+;
+
+ActionExpression_Impl returns SM::ActionExpression:
+	'ActionExpression'
+	name=ID
+	'{'
+	expression=EString
+	'}'
+;
+
+ChangeTrainCurrentTrackElement returns SM::ChangeTrainCurrentTrackElement:
+	'ChangeTrainCurrentTrackElement'
+	name=EString
+;
+
+ChangeTurnoutDirection returns SM::ChangeTurnoutDirection:
+	'ChangeTurnoutDirection'
+	name=EString
+;
+
+ChangeSignalAllowedSpeed returns SM::ChangeSignalAllowedSpeed:
+	'ChangeSignalAllowedSpeed'
+	name=EString
+;
+
+ChangeTrainHeadingSpeed returns SM::ChangeTrainHeadingSpeed:
+	'ChangeTrainHeadingSpeed'
+	name=EString
+;
+
+Trigger returns SM::Trigger:
+	TrainHeadingSpeedChanged | TrainTrackElementChanged | SignalAllowedSpeedChanged | TurnoutDirectionChanged | TriggerExpression_Impl;
+
+TrainHeadingSpeedChanged returns SM::TrainHeadingSpeedChanged:
+	'TrainHeadingSpeedChanged'
+	name=EString
+;
+
+TrainTrackElementChanged returns SM::TrainTrackElementChanged:
+	'TrainTrackElementChanged'
+	name=EString
+;
+
+SignalAllowedSpeedChanged returns SM::SignalAllowedSpeedChanged:
+	'SignalAllowedSpeedChanged'
+	name=EString
+;
+
+TurnoutDirectionChanged returns SM::TurnoutDirectionChanged:
+	'TurnoutDirectionChanged'
+	name=EString
+;
+
+TriggerExpression_Impl returns SM::TriggerExpression:
+	'TriggerExpression'
+	name=ID
+	'{'
+	expression=EString
+	'}'
+;
+
+Guard returns SM::Guard:
+	TrainCurrentHeadingSpeed | TrainCurrentlyStandsOn | TurnoutCurrentDirection | SignalCurrentAllowedSpeed | NextTrackElementIs | TurnoutHasDesiredDirection | GuardExpression_Impl;
+
+TrainCurrentHeadingSpeed returns TrainCurrentHeadingSpeed:
+	'TrainCurrentHeadingSpeed'
+	name=EString
+;
+
+TrainCurrentlyStandsOn returns TrainCurrentlyStandsOn:
+	'TrainCurrentlyStandsOn'
+	name=EString
+;
+
+TurnoutCurrentDirection returns TurnoutCurrentDirection:
+	'TurnoutCurrentDirection'
+	name=EString
+;
+
+SignalCurrentAllowedSpeed returns SignalCurrentAllowedSpeed:
+	'SignalCurrentAllowedSpeed'
+	name=EString
+;
+
+NextTrackElementIs returns NextTrackElementIs:
+	'NextTrackElementIs'
+	name=EString
+;
+
+TurnoutHasDesiredDirection returns TurnoutHasDesiredDirection:
+	'TurnoutHasDesiredDirection'
+	name=EString
+;
+	
+GuardExpression_Impl returns SM::GuardExpression:
+	'GuardExpression'
+	name=ID
+	'{'
+	expression=EString
+	'}'
+;
+
+State returns SM::State:
+	name=ID
+	((isInitial?='is Initial')? &
+	(isActive?='is Active')?)
+;
+
+Transition returns SM::Transition:
+	name=ID
+	'{'
+		((isEnabled?='is Enabled')? &
+		(isFireable?='is Fireable')?)
+		'from state' sourceState=[SM::State] 'to' targetState=[SM::State]
+		'execute' action+=[SM::Action] ( "," action+=[SM::Action])*
+		('guard' guard+=[SM::Guard] ( "," guard+=[SM::Guard])*)?
+		('trigger' trigger=[SM::Trigger])?
+	'}'
+;
+
+

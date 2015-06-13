@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MRPTraceability -->
+      <package
+            uri="hu.bme.mit.inf.gomrp.simulation.traceability"
+            class="hu.bme.mit.inf.gomrp.simulation.traceability.MRPTraceability.MRPTraceabilityPackage"
+            genModel="model/MRPTraceability.genmodel"/>
+   </extension>
+
+</plugin>

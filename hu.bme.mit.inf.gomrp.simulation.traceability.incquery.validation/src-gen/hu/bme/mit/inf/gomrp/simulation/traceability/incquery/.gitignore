@@ -1,0 +1,8 @@
+/ClassCannotBeItselvesDescendantConstraint0.java
+/ClassExtendsAtMostOneClassConstraint0.java
+/ClassifierMustHaveOnlyOnePackageConstraint0.java
+/FinalClassShouldHaveNoDescendantConstraint0.java
+/InterfaceCannotBeItselvesDescendantConstraint0.java
+/InterfaceHasOnlyFinalFieldsConstraint0.java
+/InterfaceHasOnlyPublicMembersConstraint0.java
+/InterfaceMustHaveOnlyAbstractMethodsConstraint0.java

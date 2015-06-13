@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/hu.bme.mit.inf.gomrp.statemachine/src-gen" editDirectory="/hu.bme.mit.inf.gomrp.statemachine.edit/src-gen"
+    editorDirectory="/hu.bme.mit.inf.gomrp.statemachine.editor/src-gen" modelPluginID="hu.bme.mit.inf.gomrp.statemachine"
+    modelName="StateMachine" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    testsDirectory="/hu.bme.mit.inf.gomrp.statemachine.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../hu.bme.mit.inf.gomrp.railway/model/Railway.genmodel#//RDM"
+    operationReflection="true" importOrganizing="true" pluginKey="StateMachine">
+  <foreignModel>../../hu.bme.mit.inf.gomrp.railway/model/Railway.ecore</foreignModel>
+  <foreignModel>StateMachine.ecore</foreignModel>
+  <genPackages prefix="StateMachine" basePackage="hu.bme.mit.inf.gomrp.statemachine"
+      disposableProviderFactory="true" ecorePackage="StateMachine.ecore#/">
+    <genClasses ecoreClass="StateMachine.ecore#//StateMachineBehavioralModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StateMachine.ecore#//StateMachineBehavioralModel/statemachines"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//StateMachine">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StateMachine.ecore#//StateMachine/states"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StateMachine.ecore#//StateMachine/transitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StateMachine.ecore#//StateMachine/triggers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StateMachine.ecore#//StateMachine/guards"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StateMachine.ecore#//StateMachine/actions"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference StateMachine.ecore#//StateMachine/activeState"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//StateMachine/referredObject"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//State">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//State/outgoingTransitions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//State/incomingTransitions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateMachine.ecore#//State/isInitial"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateMachine.ecore#//State/isActive"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//Transition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//Transition/sourceState"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//Transition/targetState"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//Transition/trigger"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//Transition/guard"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//Transition/action"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateMachine.ecore#//Transition/isEnabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateMachine.ecore#//Transition/isFireable"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//CompositeState">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StateMachine.ecore#//CompositeState/statemachine"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//Trigger"/>
+    <genClasses ecoreClass="StateMachine.ecore#//Guard"/>
+    <genClasses ecoreClass="StateMachine.ecore#//Action"/>
+    <genClasses image="false" ecoreClass="StateMachine.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateMachine.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//ChangeTrainHeadingSpeed">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//ChangeTrainHeadingSpeed/train"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateMachine.ecore#//ChangeTrainHeadingSpeed/newHeadingSpeed"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//ChangeSignalAllowedSpeed">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//ChangeSignalAllowedSpeed/signal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateMachine.ecore#//ChangeSignalAllowedSpeed/newAllowedSpeed"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//ChangeTurnoutDirection">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateMachine.ecore#//ChangeTurnoutDirection/newTurnoutDirection"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//ChangeTurnoutDirection/turnout"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//ChangeTrainCurrentTrackElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//ChangeTrainCurrentTrackElement/train"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//ChangeTrainCurrentTrackElement/newTrackElements"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//TrainCurrentHeadingSpeed">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//TrainCurrentHeadingSpeed/train"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateMachine.ecore#//TrainCurrentHeadingSpeed/currentHeadingSpeed"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//TrainCurrentlyStandsOn">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//TrainCurrentlyStandsOn/train"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//TrainCurrentlyStandsOn/trackElements"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//TurnoutCurrentDirection">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//TurnoutCurrentDirection/turnout"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateMachine.ecore#//TurnoutCurrentDirection/currentTurnoutDirection"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//SignalCurrentAllowedSpeed">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateMachine.ecore#//SignalCurrentAllowedSpeed/currentAllowedSpeed"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//SignalCurrentAllowedSpeed/signal"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//TrainHeadingSpeedChanged">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//TrainHeadingSpeedChanged/train"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateMachine.ecore#//TrainHeadingSpeedChanged/newHeadingSpeed"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//TrainTrackElementChanged">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//TrainTrackElementChanged/train"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//TrainTrackElementChanged/trackElements"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//SignalAllowedSpeedChanged">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//SignalAllowedSpeedChanged/signal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateMachine.ecore#//SignalAllowedSpeedChanged/newAllowedSpeed"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//TurnoutDirectionChanged">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//TurnoutDirectionChanged/turnout"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateMachine.ecore#//TurnoutDirectionChanged/newTurnoutDirection"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//NextTrackElementIs">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//NextTrackElementIs/routeElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//NextTrackElementIs/trackElement"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//TurnoutHasDesiredDirection">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//TurnoutHasDesiredDirection/turnout"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StateMachine.ecore#//TurnoutHasDesiredDirection/desiredDirection"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//ActionExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateMachine.ecore#//ActionExpression/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//GuardExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateMachine.ecore#//GuardExpression/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="StateMachine.ecore#//TriggerExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StateMachine.ecore#//TriggerExpression/expression"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

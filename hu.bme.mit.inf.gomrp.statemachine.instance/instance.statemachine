@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hu.bme.mit.inf.gomrp.statemachine:StateMachineBehavioralModel
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:hu.bme.mit.inf.gomrp.railway="hu.bme.mit.inf.gomrp.railway"
+    xmlns:hu.bme.mit.inf.gomrp.statemachine="hu.bme.mit.inf.gomrp.statemachine">
+  <statemachines
+      name="James">
+    <states
+        name="State A"
+        outgoingTransitions="//@statemachines.0/@transitions.0"
+        isActive="true"/>
+    <states
+        name="State B"
+        incomingTransitions="//@statemachines.0/@transitions.0"/>
+    <transitions
+        sourceState="//@statemachines.0/@states.0"
+        targetState="//@statemachines.0/@states.1"
+        trigger="//@statemachines.0/@triggers.0"
+        guard="//@statemachines.0/@guards.0"
+        action="//@statemachines.0/@actions.0"
+        isEnabled="true"
+        isFireable="true"/>
+    <triggers
+        expression="trig"/>
+    <guards
+        expression="g"/>
+    <actions
+        xsi:type="hu.bme.mit.inf.gomrp.statemachine:ChangeTrainCurrentTrackElement">
+      <train
+          href="../hu.bme.mit.inf.gomrp.railway.instance/instance.rdm#//@trains.1"/>
+      <newTrackElements
+          xsi:type="hu.bme.mit.inf.gomrp.railway:Section"
+          href="../hu.bme.mit.inf.gomrp.railway.instance/instance.rdm#//@sections.5"/>
+    </actions>
+    <actions
+        xsi:type="hu.bme.mit.inf.gomrp.statemachine:ChangeTurnoutDirection">
+      <turnout
+          href="../hu.bme.mit.inf.gomrp.railway.instance/instance.rdm#//@turnouts.0"/>
+    </actions>
+    <referredObject
+        xsi:type="hu.bme.mit.inf.gomrp.railway:Train"
+        href="../hu.bme.mit.inf.gomrp.railway.instance/instance.rdm#//@trains.1"/>
+  </statemachines>
+  <statemachines
+      name="Station">
+    <states
+        name="State AA"
+        outgoingTransitions="//@statemachines.1/@transitions.0"
+        isActive="true"/>
+    <states
+        name="State BB"
+        incomingTransitions="//@statemachines.1/@transitions.0"/>
+    <transitions
+        sourceState="//@statemachines.1/@states.0"
+        targetState="//@statemachines.1/@states.1"
+        isEnabled="true"/>
+    <actions
+        xsi:type="hu.bme.mit.inf.gomrp.statemachine:ChangeTrainHeadingSpeed">
+      <train
+          href="../hu.bme.mit.inf.gomrp.railway.instance/instance.rdm#//@trains.0"/>
+    </actions>
+    <referredObject
+        xsi:type="hu.bme.mit.inf.gomrp.railway:Station"
+        href="../hu.bme.mit.inf.gomrp.railway.instance/instance.rdm#//@sections.1"/>
+  </statemachines>
+</hu.bme.mit.inf.gomrp.statemachine:StateMachineBehavioralModel>

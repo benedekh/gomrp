@@ -1,0 +1,307 @@
+include
+"platform:/resource/hu.bme.mit.inf.gomrp.simulation.auto/model/instance.rdm"
+StateMachine Train for object James {
+
+	Actions:
+		ChangeTrainCurrentTrackElement CTCTE
+		ChangeTrainHeadingSpeed CTHS
+	EndActions
+
+	Guards:
+		SignalCurrentAllowedSpeed SCAS
+		SignalCurrentAllowedSpeed SCAS_FALSE
+	EndGuards
+
+	Triggers:
+		TrainTrackElementChanged TTEC
+		TriggerExpression STEP {
+			step
+		}
+	EndTriggers
+
+	States:
+		ZERO is Active is Initial TWENTY FOURTY SIXTY
+	EndStates
+
+	Transitions:
+		t1 {
+			from state ZERO
+			to TWENTY
+			execute CTHS
+			guard SCAS
+			trigger TTEC
+		}
+		t2 {
+			from state TWENTY
+			to FOURTY
+			execute CTHS
+			guard SCAS
+			trigger TTEC
+		}
+		t3 {
+			from state FOURTY
+			to SIXTY
+			execute CTHS
+			guard SCAS
+			trigger TTEC
+		}
+		t4 {
+			from state SIXTY
+			to ZERO
+			execute CTHS
+			guard SCAS_FALSE
+			trigger TTEC
+		}
+		t5 {
+			from state FOURTY
+			to ZERO
+			execute CTHS
+			guard SCAS_FALSE
+			trigger TTEC
+		}
+		t6 {
+			from state TWENTY
+			to ZERO
+			execute CTHS
+			guard SCAS_FALSE
+			trigger TTEC
+		}
+		t7 {
+			from state TWENTY
+			to TWENTY
+			execute CTCTE
+			trigger STEP
+		}
+		t8 {
+			from state FOURTY
+			to FOURTY
+			execute CTCTE
+			trigger STEP
+		}
+		t9 {
+			from state SIXTY
+			to SIXTY
+			execute CTCTE
+			trigger STEP
+		}
+	EndTransitions
+
+}
+StateMachine Station for object A {
+
+	Actions:
+		ChangeSignalAllowedSpeed CSAS
+		ChangeSignalAllowedSpeed CSAS_ZERO
+	EndActions
+
+	Guards:
+		TrainCurrentlyStandsOn TCSO
+		GuardExpression trainMustStop {
+			'ArrivalStation==referredObject || DepartureStation==referredObject'
+		}
+	EndGuards
+
+	Triggers:
+		TrainTrackElementChanged TTEC
+	EndTriggers
+
+	States:
+		OCCUPIED FREE is Initial
+	EndStates
+
+	Transitions:
+		t1 {
+			from state OCCUPIED
+			to FREE
+			execute CSAS
+			guard TCSO //is false
+
+			trigger TTEC
+		}
+		t2 {
+			from state FREE
+			to OCCUPIED
+			execute CSAS_ZERO
+			guard TCSO
+			, trainMustStop
+			trigger TTEC
+		}
+	EndTransitions
+
+}
+StateMachine Turnout for object TO1 {
+
+	Actions:
+		ChangeTurnoutDirection CTD
+	EndActions
+
+	Guards:
+		GuardExpression trainDoesNotOccupy {
+			'self.getOccupiedBy() == null'
+		}
+	EndGuards
+
+	Triggers:
+		TurnoutDirectionChanged TDC
+	EndTriggers
+
+	States:
+		STRAIGHT is Initial DIVERGENT
+	EndStates
+
+	Transitions:
+		t1 {
+			from state STRAIGHT
+			to DIVERGENT
+			execute CTD
+			guard trainDoesNotOccupy
+			trigger TDC
+		}
+		t2 {
+			from state DIVERGENT
+			to STRAIGHT
+			execute CTD
+			guard trainDoesNotOccupy
+			trigger TDC
+		}
+	EndTransitions
+
+}
+StateMachine Signal for object Sig1 {
+
+	Actions:
+		ChangeSignalAllowedSpeed CSAS
+	EndActions
+
+	Guards:
+		GuardExpression trainStandOn {
+			''
+		}
+		GuardExpression trainDoesNotStandOn {
+			''
+		}
+	EndGuards
+
+	Triggers:
+		SignalAllowedSpeedChanged SASC
+		TrainTrackElementChanged TTEC
+	EndTriggers
+
+	States:
+		ZERO is Initial TWENTY FOURTY SIXTY
+	EndStates
+
+	Transitions:
+		t1 {
+			from state ZERO
+			to TWENTY
+			execute CSAS
+			guard trainDoesNotStandOn
+			trigger SASC
+		}
+		t2 {
+			from state TWENTY
+			to FOURTY
+			execute CSAS
+			guard trainDoesNotStandOn
+			trigger SASC
+		}
+		t3 {
+			from state FOURTY
+			to SIXTY
+			execute CSAS
+			guard trainDoesNotStandOn
+			trigger SASC
+		}
+		t4 {
+			from state SIXTY
+			to ZERO
+			execute CSAS
+			guard trainStandOn
+			trigger TTEC
+		}
+		t5 {
+			from state FOURTY
+			to ZERO
+			execute CSAS
+			guard trainStandOn
+			trigger TTEC
+		}
+		t6 {
+			from state TWENTY
+			to ZERO
+			execute CSAS
+			guard trainStandOn
+			trigger TTEC
+		}
+	EndTransitions
+
+}
+StateMachine TurnoutSignal for object TSIGN {
+
+	Actions:
+		ChangeSignalAllowedSpeed CSAS
+	EndActions
+
+	Guards:
+		TurnoutHasDesiredDirection THDD
+		TurnoutHasDesiredDirection THDD_FALSE
+	EndGuards
+
+	Triggers:
+		SignalAllowedSpeedChanged SASC
+		TrainTrackElementChanged TTEC
+	EndTriggers
+
+	States:
+		ZERO is Initial TWENTY FOURTY SIXTY
+	EndStates
+
+	Transitions:
+		t1 {
+			from state ZERO
+			to TWENTY
+			execute CSAS
+			guard THDD
+			trigger SASC
+		}
+		t2 {
+			from state TWENTY
+			to FOURTY
+			execute CSAS
+			guard THDD
+			trigger SASC
+		}
+		t3 {
+			from state FOURTY
+			to SIXTY
+			execute CSAS
+			guard THDD
+			trigger SASC
+		}
+		t4 {
+			from state SIXTY
+			to ZERO
+			execute CSAS
+			guard THDD_FALSE
+			trigger TTEC
+		}
+		t5 {
+			from state FOURTY
+			to ZERO
+			execute CSAS
+			guard THDD_FALSE
+			trigger TTEC
+		}
+		t6 {
+			from state TWENTY
+			to ZERO
+			execute CSAS
+			guard THDD_FALSE
+			trigger TTEC
+		}
+	EndTransitions
+
+}
+StateMachine Section for object Sec1 {
+}

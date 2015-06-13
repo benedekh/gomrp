@@ -1,0 +1,52 @@
+StateMachine SM1 for object James{
+	Actions:
+	 	a1 {a}
+		a2 {b}
+		a3 {c}
+		a4 {d}
+	EndActions
+	Guards:
+		guard1 { g1 }
+		guard2 { g2 }
+	EndGuards
+	Triggers:
+		trig1 {	trig1 }
+	EndTriggers
+	States:
+		A is Active
+		B is Initial
+		C 
+		D 
+	EndStates
+	Transitions:
+	t1 {
+		from state A to B
+		execute a1,a2,a4
+		guard guard1
+		trigger trig1 
+	}
+	EndTransitions
+}
+
+StateMachine SM2 for object Thomas{
+	Actions:
+		b1 { e }
+		b2 { f }
+	EndActions
+	States:
+		E is Initial is Active
+		F 
+	EndStates
+	Transitions:
+	t1 {
+		from state E to F
+		execute b2
+	}
+	t2 {
+		from state F to E
+		execute b1
+	}
+	EndTransitions
+}
+
+

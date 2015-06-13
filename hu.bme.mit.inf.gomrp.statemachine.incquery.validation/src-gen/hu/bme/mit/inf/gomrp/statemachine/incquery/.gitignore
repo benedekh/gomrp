@@ -1,0 +1,10 @@
+/ElementWithoutNameConstraint0.java
+/MultipleActiveStatesInStateMachineConstraint0.java
+/MultipleInitialStatesInStateMachineConstraint0.java
+/NamesMustBeUniqueConstraint0.java
+/StationNotStoppingTrainConstraint0.java
+/TrainMustFollowItsRouteConstraint0.java
+/TransitionWithoutSourceOrTargetStateConstraint0.java
+/TurnoutChangedIfTrainOnTurnoutConstraint0.java
+/WrongTransitionEabledConstraint0.java
+/WrongTransitionFireableConstraint0.java

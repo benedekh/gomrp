@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.statemachine.incquery.wrongTransitionFireable" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.statemachine.incquery.WrongTransitionFireableConstraint0" name="hu.bme.mit.inf.gomrp.statemachine.incquery.wrongTransitionFireable">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.statemachine.StateMachine.presentation.StateMachineEditorID"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.statemachine.incquery.stationNotStoppingTrain" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.statemachine.incquery.StationNotStoppingTrainConstraint0" name="hu.bme.mit.inf.gomrp.statemachine.incquery.stationNotStoppingTrain">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.statemachine.StateMachine.presentation.StateMachineEditorID"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.statemachine.incquery.elementWithoutName" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.statemachine.incquery.ElementWithoutNameConstraint0" name="hu.bme.mit.inf.gomrp.statemachine.incquery.elementWithoutName">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.statemachine.StateMachine.presentation.StateMachineEditorID"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.statemachine.incquery.turnoutChangedIfTrainOnTurnout" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.statemachine.incquery.TurnoutChangedIfTrainOnTurnoutConstraint0" name="hu.bme.mit.inf.gomrp.statemachine.incquery.turnoutChangedIfTrainOnTurnout">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.statemachine.StateMachine.presentation.StateMachineEditorID"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.statemachine.incquery.wrongTransitionEabled" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.statemachine.incquery.WrongTransitionEabledConstraint0" name="hu.bme.mit.inf.gomrp.statemachine.incquery.wrongTransitionEabled">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.statemachine.StateMachine.presentation.StateMachineEditorID"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.statemachine.incquery.namesMustBeUnique" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.statemachine.incquery.NamesMustBeUniqueConstraint0" name="hu.bme.mit.inf.gomrp.statemachine.incquery.namesMustBeUnique">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.statemachine.StateMachine.presentation.StateMachineEditorID"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.statemachine.incquery.trainMustFollowItsRoute" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.statemachine.incquery.TrainMustFollowItsRouteConstraint0" name="hu.bme.mit.inf.gomrp.statemachine.incquery.trainMustFollowItsRoute">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.statemachine.StateMachine.presentation.StateMachineEditorID"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.statemachine.incquery.multipleInitialStatesInStateMachine" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.statemachine.incquery.MultipleInitialStatesInStateMachineConstraint0" name="hu.bme.mit.inf.gomrp.statemachine.incquery.multipleInitialStatesInStateMachine">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.statemachine.StateMachine.presentation.StateMachineEditorID"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.statemachine.incquery.multipleActiveStatesInStateMachine" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.statemachine.incquery.MultipleActiveStatesInStateMachineConstraint0" name="hu.bme.mit.inf.gomrp.statemachine.incquery.multipleActiveStatesInStateMachine">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.statemachine.StateMachine.presentation.StateMachineEditorID"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.statemachine.incquery.transitionWithoutSourceOrTargetState" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.statemachine.incquery.TransitionWithoutSourceOrTargetStateConstraint0" name="hu.bme.mit.inf.gomrp.statemachine.incquery.transitionWithoutSourceOrTargetState">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.statemachine.StateMachine.presentation.StateMachineEditorID"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+</plugin>

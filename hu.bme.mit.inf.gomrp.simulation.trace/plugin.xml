@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MRPTrace -->
+      <package
+            uri="hu.bme.mit.inf.gomrp.simulation.trace"
+            class="hu.bme.mit.inf.gomrp.simulation.trace.MRPTrace.MRPTracePackage"
+            genModel="model/MRPTrace.genmodel"/>
+   </extension>
+
+</plugin>

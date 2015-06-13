@@ -1,0 +1,188 @@
+package hu.bme.mit.inf.gomrp.statemachine.incquery
+
+import "hu.bme.mit.inf.gomrp.statemachine"
+import "hu.bme.mit.inf.gomrp.railway"
+
+/**
+ * IncQuery derived feature (D), constraints (C) and helper patterns for the Statemachine metamodel.
+ */
+
+/*
+ * ID: D1
+ */
+@QueryBasedFeature
+pattern activeState(This : StateMachine, Target : State) {
+	State.isActive(Target, true);
+	StateMachine.states(This, Target);
+}
+
+/*
+ * ID: C1
+ */
+@Constraint(targetEditorId = "*", message = "Element must have a name!", location = e, severity = "error")
+pattern elementWithoutName(e : NamedElement) {
+	neg find elementWithName(e, _);
+}
+
+/*
+ * ID: C2
+ */
+@Constraint(targetEditorId = "*", message = "Element name $commonName$ must be unique!", location = e1, severity = "error")
+pattern namesMustBeUnique(e1 : StateMachine, e2 : StateMachine, commonName) {
+	find elementWithName(e1, commonName);
+	find elementWithName(e2, commonName);
+	e1 != e2;
+}
+
+/*
+ * ID: C3
+ */
+@Constraint(targetEditorId = "*", message = "In StateMachine $sm.name$ state $s1.name$ and state $s2.name$ cannot be both initial states!", location = sm, severity = "error")
+pattern
+multipleInitialStatesInStateMachine(s1 : State, s2 : State, sm : StateMachine) {
+	StateMachine.states(sm, s1);
+	StateMachine.states(sm, s2);
+	State.isInitial(s1, true);
+	State.isInitial(s2, true);
+	State.name(s1, name1);
+	State.name(s2, name2);
+	s1 != s2;
+	check(name1 > name2);
+}
+
+/*
+ * ID: C4
+ */
+@Constraint(targetEditorId = "*", message = "In StateMachine $sm.name$ state $s1.name$ and state $s2.name$ cannot be both active states!", location = sm, severity = "error")
+pattern
+multipleActiveStatesInStateMachine(s1 : State, s2 : State, sm : StateMachine) {
+	StateMachine.states(sm, s1);
+	StateMachine.states(sm, s2);
+	State.isActive(s1, true);
+	State.isActive(s2, true);
+	State.name(s1, name1);
+	State.name(s2, name2);
+	s1 != s2;
+	check(name1 > name2);
+}
+
+/*
+ * ID: C5
+ */
+@Constraint(targetEditorId = "*", message = "Transition source and target states not defined!", location = t, severity = "error")
+pattern transitionWithoutSourceOrTargetState(t : Transition) {
+	neg find transitionSourceState(t);
+} or {
+	neg find transitionTargetState(t);
+}
+
+/*
+ * ID: C6
+ */
+@Constraint(targetEditorId = "*", message = "In StateMachine $sm.name$ transition can not be enabled, because its source state is not active!", location = t, severity = "error")
+pattern wrongTransitionEabled(sm : StateMachine, t : Transition) {
+	StateMachine.transitions(sm, t);
+	Transition.isEnabled(t, true);
+	Transition.sourceState(t, source);
+	State.isActive(source, false);
+}
+
+/*
+ * ID: C7 C8
+ */
+@Constraint(targetEditorId = "*", message = "Transition can not be fireable, because its not enabled or either its trigger or guard expression is false!", location = t, severity = "error")
+pattern wrongTransitionFireable(t : Transition) {
+	Transition.isFireable(t, true);
+	find transitionFireableError(t);
+}
+
+/*
+ * ID: C9
+ */
+@Constraint(targetEditorId = "*", message = "Transition action of state $s.name$ cannot be fired because Train $t.name$ stands on the turnout $turnout.name$!", location = tr, severity = "error")
+pattern
+turnoutChangedIfTrainOnTurnout(t : Train, tr : Transition, turnout : Turnout, s : State) {
+	StateMachine.referredObject(sm, t);
+	StateMachine.actions(sm, action);
+	ChangeTurnoutDirection.turnout(action, turnout);
+	State.outgoingTransitions(s, tr);
+	Transition.action(tr, action);
+	Transition.isEnabled(tr, true);
+	Train.standsOn(t, turnout);
+}
+
+/*
+ * ID: C10
+ */
+@Constraint(targetEditorId = "*", message = "Train $t.name$ must follow its Route. Check action!", location = action, severity = "error")
+pattern
+trainMustFollowItsRoute(t : Train, tr : Transition, action : ChangeTrainCurrentTrackElement) {
+	StateMachine.referredObject(sm, t);
+	StateMachine.actions(sm, action);
+	ChangeTrainCurrentTrackElement.train(action, t);
+	StateMachine.states(sm, s);
+	State.outgoingTransitions(s, tr);
+	Transition.action(tr, action);
+	Transition.isEnabled(tr, true);
+	Train.standsOn.connectsTo.nextElement(t, e1);
+	ChangeTrainCurrentTrackElement.newTrackElements(action, e2);
+	e1 != e2;
+}
+
+/*
+ * ID: C11
+ */
+@Constraint(targetEditorId = "*", message = "Station $station.name$ must stop train $t.name$. Check transition action!", location = tr, severity = "error")
+pattern
+stationNotStoppingTrain(station : Station, t : Train, tr : Transition) {
+	StateMachine.referredObject(sm, station);
+	StateMachine.states(sm, s);
+	State.outgoingTransitions(s, tr);
+	Station.occupiedBy(station, t);
+	neg find changeTrainHeadingSpeed(t, s, tr);
+	Train.arrivesTo(t, station);
+}
+
+// Helper patterns
+@QueryExplorer(checked = false)
+pattern elementWithName(e : NamedElement, name) {
+	NamedElement.name(e, name);
+}
+
+@QueryExplorer(checked = false)
+pattern transitionSourceState(t : Transition) {
+	Transition.sourceState(t, _);
+}
+
+@QueryExplorer(checked = false)
+pattern transitionTargetState(t : Transition) {
+	Transition.targetState(t, _);
+}
+
+@QueryExplorer(checked = false)
+pattern transitionFireableError(t : Transition) {
+	Transition.isEnabled(t, v);
+	v == false;
+} or {
+	neg find trigger(t);
+} or {
+	neg find guard(t);
+}
+
+@QueryExplorer(checked = false)
+pattern trigger(t : Transition) {
+	Transition.trigger(t, _);
+}
+
+@QueryExplorer(checked = false)
+pattern guard(t : Transition) {
+	Transition.guard(t, _);
+}
+
+@QueryExplorer(checked = false)
+pattern changeTrainHeadingSpeed(t : Train, s : State, tr : Transition) {
+	Transition.action(tr, action);
+	Transition.isEnabled(tr, true);
+	Transition.sourceState(tr, s);
+	ChangeTrainHeadingSpeed.train(action, t);
+}

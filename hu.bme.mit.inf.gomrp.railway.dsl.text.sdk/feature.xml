@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="hu.bme.mit.inf.gomrp.railway.dsl.text.sdk"
+	label="RDMTextDSL SDK Feature "
+	version="1.0.0.qualifier">
+	<plugin
+			id="hu.bme.mit.inf.gomrp.railway.dsl.text"
+			download-size="0"
+			install-size="0"
+			version="0.0.0"
+			unpack="false"/>
+	<plugin
+			id="hu.bme.mit.inf.gomrp.railway.dsl.text.ui"
+			download-size="0"
+			install-size="0"
+			version="0.0.0"
+			unpack="false"/>
+</feature>

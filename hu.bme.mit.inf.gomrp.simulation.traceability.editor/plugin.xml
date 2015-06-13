@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated MRPTraceability -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="hu.bme.mit.inf.gomrp.simulation.traceability.MRPTraceability.presentation.MRPTraceabilityModelWizardID"
+            name="%_UI_MRPTraceabilityModelWizard_label"
+            class="hu.bme.mit.inf.gomrp.simulation.traceability.MRPTraceability.presentation.MRPTraceabilityModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/MRPTraceabilityModelFile.gif">
+         <description>%_UI_MRPTraceabilityModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated MRPTraceability -->
+      <editor
+            id="hu.bme.mit.inf.gomrp.simulation.traceability.MRPTraceability.presentation.MRPTraceabilityEditorID"
+            name="%_UI_MRPTraceabilityEditor_label"
+            icon="icons/full/obj16/MRPTraceabilityModelFile.gif"
+            extensions="mrptraceability"
+            class="hu.bme.mit.inf.gomrp.simulation.traceability.MRPTraceability.presentation.MRPTraceabilityEditor"
+            contributorClass="hu.bme.mit.inf.gomrp.simulation.traceability.MRPTraceability.presentation.MRPTraceabilityActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

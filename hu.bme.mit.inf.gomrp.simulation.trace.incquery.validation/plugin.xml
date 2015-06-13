@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.simulation.trace.incquery.eventMustBeUnique" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.simulation.trace.incquery.EventMustBeUniqueConstraint0" name="hu.bme.mit.inf.gomrp.simulation.trace.incquery.eventMustBeUnique">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.simulation.trace.MRPTrace.presentation.MRPTraceEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.simulation.trace.incquery.traceEntryMustBeUnique" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.simulation.trace.incquery.TraceEntryMustBeUniqueConstraint0" name="hu.bme.mit.inf.gomrp.simulation.trace.incquery.traceEntryMustBeUnique">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.simulation.trace.MRPTrace.presentation.MRPTraceEditorID"/>
+    </constraint>
+  </extension>
+</plugin>

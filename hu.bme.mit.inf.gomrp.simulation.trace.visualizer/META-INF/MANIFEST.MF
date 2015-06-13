@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Visualizer
+Bundle-SymbolicName: hu.bme.mit.inf.gomrp.simulation.trace.visualizer
+Bundle-Version: 1.0.0.qualifier
+Export-Package: hu.bme.mit.inf.gomrp.simulation.trace.visualizer,
+ hu.bme.mit.inf.gomrp.simulation.trace.visualizer.controller
+Require-Bundle: org.eclipse.fx.javafx,
+ hu.bme.mit.inf.gomrp.simulation.trace;bundle-version="1.0.0",
+ org.eclipse.emf.ecore.xmi
+Bundle-Vendor: GoMRP

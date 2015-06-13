@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.railway.incquery.trainNotOnTrackElement" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.railway.incquery.TrainNotOnTrackElementConstraint0" name="hu.bme.mit.inf.gomrp.railway.incquery.trainNotOnTrackElement">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.railway.incquery.routeElementNotSameLengthAsTrackElement" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.railway.incquery.RouteElementNotSameLengthAsTrackElementConstraint0" name="hu.bme.mit.inf.gomrp.railway.incquery.routeElementNotSameLengthAsTrackElement">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.railway.incquery.elementWithoutName" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.railway.incquery.ElementWithoutNameConstraint0" name="hu.bme.mit.inf.gomrp.railway.incquery.elementWithoutName">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.railway.incquery.trainWithoutRoute" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.railway.incquery.TrainWithoutRouteConstraint0" name="hu.bme.mit.inf.gomrp.railway.incquery.trainWithoutRoute">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.railway.incquery.turnoutSwitchingDirection" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.railway.incquery.TurnoutSwitchingDirectionConstraint0" name="hu.bme.mit.inf.gomrp.railway.incquery.turnoutSwitchingDirection">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.railway.incquery.trainOnAtMostTwoTrackElements" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.railway.incquery.TrainOnAtMostTwoTrackElementsConstraint0" name="hu.bme.mit.inf.gomrp.railway.incquery.trainOnAtMostTwoTrackElements">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.railway.incquery.turnoutConnectsToMultiplicity" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.railway.incquery.TurnoutConnectsToMultiplicityConstraint0" name="hu.bme.mit.inf.gomrp.railway.incquery.turnoutConnectsToMultiplicity">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.railway.incquery.namesMustBeUnique" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.railway.incquery.NamesMustBeUniqueConstraint0" name="hu.bme.mit.inf.gomrp.railway.incquery.namesMustBeUnique">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.railway.incquery.trainsOnSameTrackElement" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.railway.incquery.TrainsOnSameTrackElementConstraint0" name="hu.bme.mit.inf.gomrp.railway.incquery.trainsOnSameTrackElement">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.railway.incquery.sectionConnectsToMultiplicity" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.railway.incquery.SectionConnectsToMultiplicityConstraint0" name="hu.bme.mit.inf.gomrp.railway.incquery.sectionConnectsToMultiplicity">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.railway.incquery.trainWithoutArrivalOrDepartureStation" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.railway.incquery.TrainWithoutArrivalOrDepartureStationConstraint0" name="hu.bme.mit.inf.gomrp.railway.incquery.trainWithoutArrivalOrDepartureStation">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.railway.incquery.adjacentRouteElements" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.railway.incquery.AdjacentRouteElementsConstraint0" name="hu.bme.mit.inf.gomrp.railway.incquery.adjacentRouteElements">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.railway.incquery.trackNotClosed" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.railway.incquery.TrackNotClosedConstraint0" name="hu.bme.mit.inf.gomrp.railway.incquery.trackNotClosed">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.railway.incquery.turnoutDesiredDirection" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.railway.incquery.TurnoutDesiredDirectionConstraint0" name="hu.bme.mit.inf.gomrp.railway.incquery.turnoutDesiredDirection">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.railway.incquery.trackElementsMustBeLongerThanTrains" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.railway.incquery.TrackElementsMustBeLongerThanTrainsConstraint0" name="hu.bme.mit.inf.gomrp.railway.incquery.trackElementsMustBeLongerThanTrains">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.railway.incquery.turnoutCurrentDirection" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.railway.incquery.TurnoutCurrentDirectionConstraint0" name="hu.bme.mit.inf.gomrp.railway.incquery.turnoutCurrentDirection">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.railway.incquery.routeNotContainingArrivalOrDepartureStation" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.railway.incquery.RouteNotContainingArrivalOrDepartureStationConstraint0" name="hu.bme.mit.inf.gomrp.railway.incquery.routeNotContainingArrivalOrDepartureStation">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.railway.incquery.reversedRouteElements" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.railway.incquery.ReversedRouteElementsConstraint0" name="hu.bme.mit.inf.gomrp.railway.incquery.reversedRouteElements">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+  <extension id="validation.constraint.hu.bme.mit.inf.gomrp.railway.incquery.routeFirstElement" point="org.eclipse.incquery.validation.runtime.constraint">
+    <constraint class="hu.bme.mit.inf.gomrp.railway.incquery.RouteFirstElementConstraint0" name="hu.bme.mit.inf.gomrp.railway.incquery.routeFirstElement">
+      <enabledForEditor editorId="*"/>
+      <enabledForEditor editorId="hu.bme.mit.inf.gomrp.railway.RDM.presentation.RDMEditorID"/>
+    </constraint>
+  </extension>
+</plugin>

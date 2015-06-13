@@ -1,0 +1,91 @@
+package hu.bme.mit.inf.gomrp.simulation.traceability.incquery
+
+import "hu.bme.mit.inf.gomrp.simulation.traceability"
+
+/**
+ * IncQuery constraints patterns for the Traceability metamodel.
+ */
+
+/**
+ * C1
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Final class could not have descendants!", location = c)
+pattern finalClassShouldHaveNoDescendant(c : TargetClass) {
+	TargetClass.modifier(c, Modifier::FINAL);
+	find isSuperclass(c);
+}
+
+/**
+ * C2
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Class cannot be itselves descendant!", location = c)
+pattern classCannotBeItselvesDescendant(c : TargetClass) {
+	TargetClass.extendsCls(c, c);
+}
+
+/**
+ * C3
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Interface cannot be itselves descendant!", location = i)
+pattern interfaceCannotBeItselvesDescendant(i : TargetInterface) {
+	TargetInterface.extendsInterface(i, i);
+}
+
+/**
+ * C4
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Classifier cannot be in two packages!", location = c)
+pattern classifierMustHaveOnlyOnePackage(c : TargetClassifier) {
+	TargetClassifier.isIn(c, _);
+	TargetClassifier.isInSpecial(c, _);
+}
+
+/**
+ * C5
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Interface must have only abstract methods!", location = i)
+pattern interfaceMustHaveOnlyAbstractMethods(i : TargetInterface) {
+	find isMember(i, m);
+	TargetMethod.modifier(m, modifier);
+	modifier != Modifier::ABSTRACT;
+}
+
+/**
+ * C6
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Interface must have only public members!", location = i)
+pattern interfaceHasOnlyPublicMembers(i : TargetInterface) {
+	find isMember(i, m);
+	TargetMember.visibility(m, v);
+	v != Visibility::PUBLIC;
+}
+
+/**
+ * C7
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Interface must have only final fields!", location = i)
+pattern interfaceHasOnlyFinalFields(i : TargetInterface) {
+	find isMember(i, field);
+	TargetField.modifier(field, modifier);
+	modifier != Modifier::FINAL;
+}
+
+/**
+ * C8
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Class can extend at most one another class!", location = c)
+pattern classExtendsAtMostOneClass(c : TargetClass) {
+	TargetClass.extendsCls(c, _);
+	TargetClass.extendsSpecial(c, _);
+}
+
+/**
+ * Helper patterns
+ */
+pattern isSuperclass(c : TargetClass) {
+	TargetClass.extendsCls(_, c);
+}
+
+pattern isMember(c : TargetClassifier, m : TargetMember) {
+	TargetClassifier.members(c, m);
+}

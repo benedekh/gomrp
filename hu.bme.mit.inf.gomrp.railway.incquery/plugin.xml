@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="extension.derived.hu.bme.mit.inf.gomrp.railway.incquery.observes" point="org.eclipse.incquery.runtime.base.wellbehaving.derived.features">
+    <wellbehaving-derived-feature classifier-name="Signal" feature-name="observes" package-nsUri="hu.bme.mit.inf.gomrp.railway"/>
+  </extension>
+  <extension id="extension.derived.hu.bme.mit.inf.gomrp.railway.incquery.controls" point="org.eclipse.incquery.runtime.base.wellbehaving.derived.features">
+    <wellbehaving-derived-feature classifier-name="Station" feature-name="controls" package-nsUri="hu.bme.mit.inf.gomrp.railway"/>
+  </extension>
+  <extension id="extension.derived.hu.bme.mit.inf.gomrp.railway.incquery.referredTurnout" point="org.eclipse.incquery.runtime.base.wellbehaving.derived.features">
+    <wellbehaving-derived-feature classifier-name="TurnoutDesiredDirection" feature-name="referredTurnout" package-nsUri="hu.bme.mit.inf.gomrp.railway"/>
+  </extension>
+  <extension id="hu.bme.mit.inf.gomrp.railway.incquery.Queries" point="org.eclipse.incquery.runtime.queryspecification">
+    <group group="org.eclipse.incquery.runtime.extensibility.SingletonExtensionFactory:hu.bme.mit.inf.gomrp.railway.incquery.Queries" id="hu.bme.mit.inf.gomrp.railway.incquery.Queries"/>
+  </extension>
+</plugin>

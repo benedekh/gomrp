@@ -1,0 +1,887 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:validation="http://www.eclipse.org/sirius/description/validation/1.1.0" name="rdm" version="8.1.0">
+  <ownedViewpoints name="hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway" label="Railway" modelFileExtension="rdm">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway" label="Railway Diagram" domainClass="RailwayDomainModel">
+      <metamodel href="../../hu.bme.mit.inf.gomrp.railway/model/Railway.ecore#/"/>
+      <validationSet name="RailwayValidation">
+        <ownedRules xsi:type="validation:SemanticValidationRule" message="Section name does not start with Sec." targetClass="Section">
+          <audits auditExpression="[(self.name.startsWith('Sec') and not self.eClass().instanceTypeName.endsWith('Station')) or (self.eClass().instanceTypeName.endsWith('Station'))/]"/>
+          <fixes name="Fix the name">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="['Sec' + self.name/]"/>
+            </initialOperation>
+          </fixes>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" message="Station name does not begin with ST." targetClass="Station">
+          <audits auditExpression="[self.name.startsWith('ST')/]"/>
+          <fixes name="Fix the name">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="['ST' + self.name/]"/>
+            </initialOperation>
+          </fixes>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" message="Turnout name does not begin with TO." targetClass="Turnout">
+          <audits auditExpression="[self.name.startsWith('TO')/]"/>
+          <fixes name="Fix the name">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="['TO' + self.name/]"/>
+            </initialOperation>
+          </fixes>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" message="ConnectionPoint name does not begin with CP." targetClass="ConnectionPoint">
+          <audits auditExpression="[self.name.startsWith('CP')/]"/>
+          <fixes name="Fix the name">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="['CP' + self.name/]"/>
+            </initialOperation>
+          </fixes>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" message="Signal name does not begin with Sig." targetClass="Signal">
+          <audits auditExpression="[(self.name.startsWith('Sig') and not self.eClass().instanceTypeName.endsWith('TurnoutSignal')) or (self.eClass().instanceTypeName.endsWith('TurnoutSignal'))/]"/>
+          <fixes name="Fix the name">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="['Sig' + self.name/]"/>
+            </initialOperation>
+          </fixes>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" message="TurnoutSignal name does not begin with TSig." targetClass="TurnoutSignal">
+          <audits auditExpression="[self.name.startsWith('TSig')/]"/>
+          <fixes name="Fix the name">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="['TSig' + self.name/]"/>
+            </initialOperation>
+          </fixes>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" message="Train name does not begin with T." targetClass="Train">
+          <audits auditExpression="[self.name.startsWith('T')/]"/>
+          <fixes name="Fix the name">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="['T' + self.name/]"/>
+            </initialOperation>
+          </fixes>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" message="Route name does not begin with R." targetClass="Route">
+          <audits auditExpression="[self.name.startsWith('R')/]"/>
+          <fixes name="Fix the name">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="['R' + self.name/]"/>
+            </initialOperation>
+          </fixes>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" message="RouteElement name does not begin with RE." targetClass="RouteElement">
+          <audits auditExpression="[self.name.startsWith('RE')/]"/>
+          <fixes name="Fix the name">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="['RE' + self.name/]"/>
+            </initialOperation>
+          </fixes>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" message="TurnoutDesiredDirection name does not begin with TDD." targetClass="TurnoutDesiredDirection">
+          <audits auditExpression="[self.name.startsWith('TDD')/]"/>
+          <fixes name="Fix the name">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="['TDD' + self.name/]"/>
+            </initialOperation>
+          </fixes>
+        </ownedRules>
+      </validationSet>
+      <defaultLayer name="hu.bme.mit.inf.gomrp.railway.dsl.design.layer.default" label="Default">
+        <toolSections name="hu.bme.mit.inf.gomrp.railway.dsl.design.section.default" label="Default">
+          <ownedTools xsi:type="tool_1:DoubleClickDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.doubleclick" label="Element" mappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.connectionpoint'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.station'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.section'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.route'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.routeelement'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.signal'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.train'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.turnout'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.tdd'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.turnoutsignal']">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jaction.doubleclick" label="Double click on element" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.doubleclick">
+                <parameters name="element" value="var:element"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jaction.telengthinherit" label="Enable TrackElement Length Inheritance" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.telengthinherit">
+            <parameters name="param" value="[self/]"/>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+      <additionalLayers name="hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign" label="Route Design">
+        <nodeMappings name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.route" label="Route" deletionDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rddnode']/@tools.1" labelDirectEdit="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rdrnode']/@tools.0" doubleClickDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@defaultLayer/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.doubleclick']" domainClass="RDM.Route">
+          <style xsi:type="style:WorkspaceImageDescription" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/route.png">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.routeelement" label="RouteElement" deletionDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rddnode']/@tools.2" labelDirectEdit="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rdrnode']/@tools.1" doubleClickDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@defaultLayer/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.doubleclick']" domainClass="RDM.RouteElement">
+          <style xsi:type="style:WorkspaceImageDescription" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/route_element.png">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.tdd" label="TurnoutDesiredDirection" labelDirectEdit="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rdrnode']/@tools.3" doubleClickDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@defaultLayer/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.doubleclick']" domainClass="RDM.TurnoutDesiredDirection">
+          <style xsi:type="style:WorkspaceImageDescription" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/turnout_direction.png">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.train" label="Train" deletionDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rddnode']/@tools.0" labelDirectEdit="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rdrnode']/@tools.2" semanticCandidatesExpression="[self.trains/]" doubleClickDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@defaultLayer/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.doubleclick']" domainClass="RDM.Train">
+          <style xsi:type="style:WorkspaceImageDescription" sizeComputationExpression="-1" resizeKind="NSEW" roundedCorner="true" workspacePath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/train.png">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </nodeMappings>
+        <edgeMappings name="hu.bme.mit.inf.gomrp.railway.dsl.design.edge.fre" label="First Route Element" deletionDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rddedge']/@tools.1" sourceMapping="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.route']" targetMapping="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.routeelement']" targetFinderExpression="[self.firstElement/]" reconnections="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rdrc']/@tools.1 //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rdrc']/@tools.5">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="hu.bme.mit.inf.gomrp.railway.dsl.design.edge.nre" label="Next Route Element" deletionDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rddedge']/@tools.2" sourceMapping="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.routeelement']" targetMapping="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.routeelement']" targetFinderExpression="[self.nextElement/]" reconnections="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rdrc']/@tools.2 //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rdrc']/@tools.6">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="hu.bme.mit.inf.gomrp.railway.dsl.design.edge.dd" label="Desired Direction" deletionDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rddedge']/@tools.3" sourceMapping="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.routeelement']" targetMapping="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.tdd']" targetFinderExpression="[self.desiredDirection/]" reconnections="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rdrc']/@tools.3 //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rdrc']/@tools.7">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="hu.bme.mit.inf.gomrp.railway.dsl.design.edge.tr" label="Train Route" deletionDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rddedge']/@tools.0" sourceMapping="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.train']" targetMapping="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.route']" targetFinderExpression="[self.follows/]" reconnections="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rdrc']/@tools.0 //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rdrc']/@tools.4">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="hu.bme.mit.inf.gomrp.railway.dsl.design.edge.standson" label="Stands on" deletionDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rddedge']/@tools.4" sourceMapping="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.train']" targetMapping="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.section'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.station'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.turnout']" targetFinderExpression="[self.standsOn/]" reconnections="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rdrc']/@tools.8 //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.rdrc']/@tools.9">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='green']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <toolSections name="hu.bme.mit.inf.gomrp.railway.dsl.design.section.rd" label="RouteDesigner">
+          <ownedTools xsi:type="tool_1:ToolGroup" name="hu.bme.mit.inf.gomrp.railway.dsl.design.group.rdnode" label="RouteDesigner Nodes">
+            <tools xsi:type="tool_1:NodeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.creation.route" label="Route" nodeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.route']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/route_small.png">
+              <variable name="container"/>
+              <viewVariable name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:CreateInstance" typeName="Route" referenceName="editorRoute">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="R"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:NodeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.creation.routeelement" label="Route Element" nodeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.routeelement']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/route_element_small.png">
+              <variable name="container"/>
+              <viewVariable name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:CreateInstance" typeName="RouteElement" referenceName="editorRouteElement">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="RE"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:NodeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.creation.train" label="Train" nodeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.train']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/train_small.png">
+              <variable name="container"/>
+              <viewVariable name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:CreateInstance" typeName="Train" referenceName="trains">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="T"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:NodeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.creation.tdd" label="TurnoutDesiredDirection" nodeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.tdd']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/turnout_direction_small.png">
+              <variable name="container"/>
+              <viewVariable name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:CreateInstance" typeName="TurnoutDesiredDirection" referenceName="editorTDD">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="TDD"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ToolGroup" name="hu.bme.mit.inf.gomrp.railway.dsl.design.group.rdcnode" label="RouteDesigner ComplexNodes">
+            <tools xsi:type="tool_1:NodeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.creation.twroute" label="Train with Route" nodeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.train'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.route'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.routeelement']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/train_with_route.png">
+              <variable name="container"/>
+              <viewVariable name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.twroute" label="Train with Route Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.twroute">
+                  <parameters name="container" value="var:container"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:NodeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.creation.rewdd" label="RouteElement with DesiredDirection" nodeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.routeelement'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.tdd']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/route_element_with_tdd.png">
+              <variable name="container"/>
+              <viewVariable name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.rewdd" label="RouteElement with DesiredDirection Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.rewdd">
+                  <parameters name="container" value="var:container"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ToolGroup" name="hu.bme.mit.inf.gomrp.railway.dsl.design.group.rdrnode" label="RouteDesigner RenameNodes">
+            <tools xsi:type="tool_1:DirectEditLabel" name="hu.bme.mit.inf.gomrp.railway.dsl.design.rename.route" label="Rename Route">
+              <mask mask="{0}"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:arg0"/>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:DirectEditLabel" name="hu.bme.mit.inf.gomrp.railway.dsl.design.rename.re" label="Rename RouteElement">
+              <mask mask="{0}"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:arg0"/>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:DirectEditLabel" name="hu.bme.mit.inf.gomrp.railway.dsl.design.rename.train" label="Rename Train">
+              <mask mask="{0}"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:arg0"/>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:DirectEditLabel" name="hu.bme.mit.inf.gomrp.railway.dsl.design.rename.tdd" label="Rename TurnoutDesiredDirection">
+              <mask mask="{0}"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:arg0"/>
+              </initialOperation>
+            </tools>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ToolGroup" name="hu.bme.mit.inf.gomrp.railway.dsl.design.group.rddnode" label="RouteDesigner DeleteNodes">
+            <tools xsi:type="tool_1:DeleteElementDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.delete.train" label="Delete Train">
+              <element name="element"/>
+              <elementView name="elementView"/>
+              <containerView name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.dtrain" label="Delete Train Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.dtrain">
+                  <parameters name="element" value="var:element"/>
+                  <parameters name="container" value="var:containerView"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:DeleteElementDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.delete.route" label="Delete Route">
+              <element name="element"/>
+              <elementView name="elementView"/>
+              <containerView name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.droute" label="Delete Route Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.droute">
+                  <parameters name="element" value="var:element"/>
+                  <parameters name="container" value="var:containerView"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:DeleteElementDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.delete.re" label="Delete RouteElement">
+              <element name="element"/>
+              <elementView name="elementView"/>
+              <containerView name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.dre" label="Delete RouteElement Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.dre">
+                  <parameters name="element" value="var:element"/>
+                  <parameters name="container" value="var:containerView"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ToolGroup" name="hu.bme.mit.inf.gomrp.railway.dsl.design.group.rdedge" label="RouteDesigner Edges">
+            <tools xsi:type="tool_1:EdgeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.edge.creation.firstrouteelement" label="Connect First RouteElement" edgeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@edgeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.edge.fre']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/gray_arrow.png">
+              <sourceVariable name="source"/>
+              <targetVariable name="target"/>
+              <sourceViewVariable name="sourceView"/>
+              <targetViewVariable name="targetView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:SetValue" featureName="firstElement" valueExpression="var:target"/>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:EdgeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.edge.creation.turnoutdd" label="Connect Desired Direction" edgeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@edgeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.edge.dd']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/gray_arrow.png">
+              <sourceVariable name="source"/>
+              <targetVariable name="target"/>
+              <sourceViewVariable name="sourceView"/>
+              <targetViewVariable name="targetView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:SetValue" featureName="desiredDirection" valueExpression="var:target"/>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:EdgeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.edge.creation.troute" label="Connect Route" edgeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@edgeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.edge.tr']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/gray_arrow.png">
+              <sourceVariable name="source"/>
+              <targetVariable name="target"/>
+              <sourceViewVariable name="sourceView"/>
+              <targetViewVariable name="targetView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:SetValue" featureName="follows" valueExpression="var:target"/>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:EdgeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.edge.creation.nrelement" label="Connect Next RouteElement" edgeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@edgeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.edge.nre']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/gray_arrow.png">
+              <sourceVariable name="source"/>
+              <targetVariable name="target"/>
+              <sourceViewVariable name="sourceView"/>
+              <targetViewVariable name="targetView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:SetValue" featureName="nextElement" valueExpression="var:target"/>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:EdgeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.edge.creation.standson" label="Connect Stands on" edgeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.routedesign']/@edgeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.edge.standson']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/green_arrow.png">
+              <sourceVariable name="source"/>
+              <targetVariable name="target"/>
+              <sourceViewVariable name="sourceView"/>
+              <targetViewVariable name="targetView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:SetValue" featureName="standsOn" valueExpression="var:target"/>
+              </initialOperation>
+            </tools>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ToolGroup" name="hu.bme.mit.inf.gomrp.railway.dsl.design.group.rdrc" label="RouteDesigner ReconnectEdges">
+            <tools xsi:type="tool_1:ReconnectEdgeDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.reconnect.routet" label="Reconnect Route Target">
+              <source name="source"/>
+              <target name="target"/>
+              <sourceView name="sourceView"/>
+              <targetView name="targetView"/>
+              <element name="element"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:Unset" featureName="follows" elementExpression="var:source">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="follows" valueExpression="var:target"/>
+                </firstModelOperations>
+              </initialOperation>
+              <edgeView name="edgeView"/>
+            </tools>
+            <tools xsi:type="tool_1:ReconnectEdgeDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.reconnect.fret" label="Reconnect FirstRouteElement Target">
+              <source name="source"/>
+              <target name="target"/>
+              <sourceView name="sourceView"/>
+              <targetView name="targetView"/>
+              <element name="element"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:Unset" featureName="firstElement" elementExpression="var:source">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="firstElement" valueExpression="var:target"/>
+                </firstModelOperations>
+              </initialOperation>
+              <edgeView name="edgeView"/>
+            </tools>
+            <tools xsi:type="tool_1:ReconnectEdgeDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.reconnect.nret" label="Reconnect NextRouteElement Target">
+              <source name="source"/>
+              <target name="target"/>
+              <sourceView name="sourceView"/>
+              <targetView name="targetView"/>
+              <element name="element"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:Unset" featureName="nextElement" elementExpression="var:source">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="nextElement" valueExpression="var:target"/>
+                </firstModelOperations>
+              </initialOperation>
+              <edgeView name="edgeView"/>
+            </tools>
+            <tools xsi:type="tool_1:ReconnectEdgeDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.reconnect.ddt" label="Reconnect DesiredDirection Target">
+              <source name="source"/>
+              <target name="target"/>
+              <sourceView name="sourceView"/>
+              <targetView name="targetView"/>
+              <element name="element"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:Unset" featureName="desiredDirection" elementExpression="var:source">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="desiredDirection" valueExpression="var:target"/>
+                </firstModelOperations>
+              </initialOperation>
+              <edgeView name="edgeView"/>
+            </tools>
+            <tools xsi:type="tool_1:ReconnectEdgeDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.reconnect.routes" label="Reconnect Route Source" reconnectionKind="RECONNECT_SOURCE">
+              <source name="source"/>
+              <target name="target"/>
+              <sourceView name="sourceView"/>
+              <targetView name="targetView"/>
+              <element name="element"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.routes" label="Reconnect Route Source Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.routes">
+                  <parameters name="source" value="var:source"/>
+                  <parameters name="target" value="var:target"/>
+                </firstModelOperations>
+              </initialOperation>
+              <edgeView name="edgeView"/>
+            </tools>
+            <tools xsi:type="tool_1:ReconnectEdgeDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.reconnect.fres" label="Reconnect FirstRouteElement Source" reconnectionKind="RECONNECT_SOURCE">
+              <source name="source"/>
+              <target name="target"/>
+              <sourceView name="sourceView"/>
+              <targetView name="targetView"/>
+              <element name="element"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.fres" label="Reconnect FirstRouteElement Source Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.fres">
+                  <parameters name="source" value="var:source"/>
+                  <parameters name="target" value="var:target"/>
+                </firstModelOperations>
+              </initialOperation>
+              <edgeView name="edgeView"/>
+            </tools>
+            <tools xsi:type="tool_1:ReconnectEdgeDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.reconnect.nres" label="Reconnect NextRouteElement Source" reconnectionKind="RECONNECT_SOURCE">
+              <source name="source"/>
+              <target name="target"/>
+              <sourceView name="sourceView"/>
+              <targetView name="targetView"/>
+              <element name="element"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.nres" label="Reconnect NextRouteElement Source Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.nres">
+                  <parameters name="source" value="var:source"/>
+                  <parameters name="target" value="var:target"/>
+                </firstModelOperations>
+              </initialOperation>
+              <edgeView name="edgeView"/>
+            </tools>
+            <tools xsi:type="tool_1:ReconnectEdgeDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.reconnect.dds" label="Reconnect DesiredDirection Source" reconnectionKind="RECONNECT_SOURCE">
+              <source name="source"/>
+              <target name="target"/>
+              <sourceView name="sourceView"/>
+              <targetView name="targetView"/>
+              <element name="element"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.dds" label="Reconnect DesiredDirection Source Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.dds">
+                  <parameters name="source" value="var:source"/>
+                  <parameters name="target" value="var:target"/>
+                </firstModelOperations>
+              </initialOperation>
+              <edgeView name="edgeView"/>
+            </tools>
+            <tools xsi:type="tool_1:ReconnectEdgeDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.reconnect.standson" label="Reconnect Stands on">
+              <source name="source"/>
+              <target name="target"/>
+              <sourceView name="sourceView"/>
+              <targetView name="targetView"/>
+              <element name="element"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:Unset" featureName="standsOn" elementExpression="var:source">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="standsOn" valueExpression="var:target"/>
+                </firstModelOperations>
+              </initialOperation>
+              <edgeView name="edgeView"/>
+            </tools>
+            <tools xsi:type="tool_1:ReconnectEdgeDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.reconnect.sos" label="Reconnect StandsOn Source" reconnectionKind="RECONNECT_SOURCE">
+              <source name="source"/>
+              <target name="target"/>
+              <sourceView name="sourceView"/>
+              <targetView name="targetView"/>
+              <element name="element"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.sos" label=" Reconnect StandsOn Source Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.sos">
+                  <parameters name="source" value="var:source"/>
+                  <parameters name="target" value="var:target"/>
+                  <parameters name="edge" value="var:edgeView"/>
+                </firstModelOperations>
+              </initialOperation>
+              <edgeView name="edgeView"/>
+            </tools>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ToolGroup" name="hu.bme.mit.inf.gomrp.railway.dsl.design.group.rddedge" label="RouteDesigner DeleteEdges">
+            <tools xsi:type="tool_1:DeleteElementDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.delete.troute" label="Delete TrainRoute">
+              <element name="element"/>
+              <elementView name="elementView"/>
+              <containerView name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:Unset" featureName="follows"/>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:DeleteElementDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.delete.fre" label="Delete FirstRouteElement">
+              <element name="element"/>
+              <elementView name="elementView"/>
+              <containerView name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:Unset" featureName="firstElement"/>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:DeleteElementDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.delete.nre" label="Delete NextRouteElement">
+              <element name="element"/>
+              <elementView name="elementView"/>
+              <containerView name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:Unset" featureName="nextElement"/>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:DeleteElementDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.delete.dd" label="Delete DesiredDirection">
+              <element name="element"/>
+              <elementView name="elementView"/>
+              <containerView name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:Unset" featureName="desiredDirection"/>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:DeleteElementDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.delete.standson" label="Delete Stands on">
+              <element name="element"/>
+              <elementView name="elementView"/>
+              <containerView name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.dstandson" label="Delete StandsOn Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.dstandson">
+                  <parameters name="source" value="var:element"/>
+                  <parameters name="edge" value="var:elementView"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+          </ownedTools>
+          <ownedTools xsi:type="tool:PopupMenu" name="hu.bme.mit.inf.gomrp.railway.dsl.design.section.popup.route" label="Route">
+            <menuItemDescription xsi:type="tool:OperationAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.action.createroute" label="Create route" forceRefresh="true" icon="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/route_small.png">
+              <view name="views"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jaction.createroute" label="Create route" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.createroute">
+                  <parameters name="views" value="var:views"/>
+                </firstModelOperations>
+              </initialOperation>
+            </menuItemDescription>
+          </ownedTools>
+        </toolSections>
+      </additionalLayers>
+      <additionalLayers name="hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign" label="Track Design" activeByDefault="true">
+        <nodeMappings name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.section" label="Section" deletionDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.tddnode']/@tools.1" labelDirectEdit="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.tdrnode']/@tools.0" semanticCandidatesExpression="[self.sections/]" doubleClickDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@defaultLayer/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.doubleclick']" domainClass="RDM.Section">
+          <style xsi:type="style:WorkspaceImageDescription" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/section.png">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings xsi:type="description_1:NodeMappingImport" name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.station" label="Station" deletionDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.tddnode']/@tools.1" labelDirectEdit="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.tdrnode']/@tools.0" semanticCandidatesExpression="[self.sections/]" doubleClickDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@defaultLayer/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.doubleclick']" domainClass="RDM.Station" importedMapping="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.section']">
+          <style xsi:type="style:WorkspaceImageDescription" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/station.png">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.turnout" label="Turnout" deletionDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.tddnode']/@tools.1" labelDirectEdit="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.tdrnode']/@tools.0" semanticCandidatesExpression="[self.turnouts/]" doubleClickDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@defaultLayer/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.doubleclick']" domainClass="RDM.Turnout">
+          <conditionnalStyles predicateExpression="[self.switchingDirection.toString().size() = 4/]">
+            <style xsi:type="style:WorkspaceImageDescription" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/turnout_left.png">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </conditionnalStyles>
+          <conditionnalStyles predicateExpression="[self.switchingDirection.toString().size() = 5/]">
+            <style xsi:type="style:WorkspaceImageDescription" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/turnout_right.png">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </conditionnalStyles>
+        </nodeMappings>
+        <nodeMappings xsi:type="description_1:NodeMappingImport" name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.turnoutsignal" label="TurnoutSignal" labelDirectEdit="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.tdrnode']/@tools.1" doubleClickDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@defaultLayer/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.doubleclick']" domainClass="RDM.TurnoutSignal" importedMapping="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.signal']">
+          <style xsi:type="style:WorkspaceImageDescription" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/turnout_signal.png">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.connectionpoint" label="ConnectionPoint" deletionDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.tddnode']/@tools.0" labelDirectEdit="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.tdrnode']/@tools.2" doubleClickDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@defaultLayer/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.doubleclick']" domainClass="RDM.ConnectionPoint">
+          <style xsi:type="style:WorkspaceImageDescription" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/connectionpoint.png">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.signal" label="Signal" labelDirectEdit="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.tdrnode']/@tools.1" doubleClickDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@defaultLayer/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.doubleclick']" domainClass="RDM.Signal">
+          <style xsi:type="style:WorkspaceImageDescription" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/signal.png">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </nodeMappings>
+        <edgeMappings name="hu.bme.mint.inf.gomrp.railways.dsl.design.edge.nextelement" label="Next Element" deletionDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.tddedge']/@tools.0" sourceMapping="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.connectionpoint']" targetMapping="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.section'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.station'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.turnout']" targetFinderExpression="[self.nextElement/]" reconnections="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.tdrc']/@tools.2 //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.tdrc']/@tools.5">
+          <style lineStyle="dash" targetArrow="InputFillClosedArrow" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription showIcon="false">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="hu.bme.mint.inf.gomrp.railways.dsl.design.edge.connectsto" label="Connects" deletionDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.tddedge']/@tools.2" sourceMapping="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.section'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.station'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.turnout']" targetMapping="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.connectionpoint']" targetFinderExpression="[self.connectsTo/]" reconnections="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.tdrc']/@tools.1 //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.tdrc']/@tools.4">
+          <style lineStyle="dash" targetArrow="InputFillClosedArrow" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="hu.bme.mint.inf.gomrp.railways.dsl.design.edge.holds" label="Holds Signal" deletionDescription="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.tddedge']/@tools.1" sourceMapping="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.connectionpoint']" targetMapping="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.signal'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.turnoutsignal']" targetFinderExpression="[self.holds/]" reconnections="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.tdrc']/@tools.0 //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@toolSections.0/@ownedTools[name='hu.bme.mit.inf.gomrp.railway.dsl.design.group.tdrc']/@tools.3">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <toolSections name="hu.bme.mit.inf.gomrp.railway.dsl.design.section.td" label="TrackDesigner">
+          <ownedTools xsi:type="tool_1:ToolGroup" name="hu.bme.mit.inf.gomrp.railway.dsl.design.group.tdnode" label="TrackDesigner Nodes">
+            <tools xsi:type="tool_1:NodeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.creation.section" label="Section" nodeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.section']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/section_small.png">
+              <variable name="container"/>
+              <viewVariable name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:CreateInstance" typeName="Section" referenceName="sections">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="Sec"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:NodeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.creation.station" label="Station" nodeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.station']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/station_small.png">
+              <variable name="container"/>
+              <viewVariable name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:CreateInstance" typeName="Station" referenceName="sections">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="ST"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:NodeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.creation.turnout" label="Turnout" nodeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.turnout']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/turnout_small.png">
+              <variable name="container"/>
+              <viewVariable name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:CreateInstance" typeName="Turnout" referenceName="turnouts">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="TO"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:NodeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.creation.signal" label="Signal" nodeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.signal']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/signal_small.png">
+              <variable name="container"/>
+              <viewVariable name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:CreateInstance" typeName="Signal" referenceName="editorSignal">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="Sig "/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:NodeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.creation.turnoutsignal" label="Turnout Signal" nodeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.turnoutsignal']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/turnout_signal_small.png">
+              <variable name="container"/>
+              <viewVariable name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:CreateInstance" typeName="TurnoutSignal" referenceName="editorSignal">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="TSig"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:NodeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.creation.connectionpoint" label="Connection Point" nodeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.connectionpoint']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/connectionpoint_small.png">
+              <variable name="container"/>
+              <viewVariable name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:CreateInstance" typeName="ConnectionPoint" referenceName="editorCP">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="CP"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ToolGroup" name="hu.bme.mit.inf.gomrp.railway.dsl.design.group.tdcnode" label="TrackDesigner ComplexNodes">
+            <tools xsi:type="tool_1:NodeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.creation.csection" label="Section with ConnectionPoints" nodeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.section'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.connectionpoint'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.signal']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/hammer.png">
+              <variable name="container"/>
+              <viewVariable name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.csection" label="Complex Section Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.csection">
+                  <parameters name="container" value="var:container"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:NodeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.creation.cturnout" label="Turnout with ConnectionPoints" nodeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.turnout'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.connectionpoint'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.signal']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/hammer.png">
+              <variable name="container"/>
+              <viewVariable name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.cturnout" label="Complex Turnout Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.cturnout">
+                  <parameters name="container" value="var:container"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:NodeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.creation.cstation" label="Station with ConnectionPoints" nodeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.station'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.connectionpoint'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.signal']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/hammer.png">
+              <variable name="container"/>
+              <viewVariable name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.cstation" label="Complex Station Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.cstation">
+                  <parameters name="container" value="var:container"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ToolGroup" name="hu.bme.mit.inf.gomrp.railway.dsl.design.group.tdrnode" label="TrackDesigner RenameNodes">
+            <tools xsi:type="tool_1:DirectEditLabel" name="hu.bme.mit.inf.gomrp.railway.dsl.design.rename.telement" label="Rename TrackElement">
+              <mask mask="{0}"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:arg0"/>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:DirectEditLabel" name="hu.bme.mit.inf.gomrp.railway.dsl.design.rename.signal" label="Rename Signal">
+              <mask mask="{0}"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:arg0"/>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:DirectEditLabel" name="hu.bme.mit.inf.gomrp.railway.dsl.design.rename.cp" label="Rename ConnectionPoint">
+              <mask mask="{0}"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:arg0"/>
+              </initialOperation>
+            </tools>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ToolGroup" name="hu.bme.mit.inf.gomrp.railway.dsl.design.group.tddnode" label="TrackDesigner DeleteNodes">
+            <tools xsi:type="tool_1:DeleteElementDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.delete.cp" label="Delete ConnectionPoint">
+              <element name="element"/>
+              <elementView name="elementView"/>
+              <containerView name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.dcp" label="Delete ConnectionPoint Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.dcp">
+                  <parameters name="element" value="var:element"/>
+                  <parameters name="container" value="var:containerView"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:DeleteElementDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.delete.te" label="Delete TrackElement">
+              <element name="element"/>
+              <elementView name="elementView"/>
+              <containerView name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.dte" label="Delete TrackElement Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.dte">
+                  <parameters name="element" value="var:element"/>
+                  <parameters name="container" value="var:containerView"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ToolGroup" name="hu.bme.mit.inf.gomrp.railway.dsl.design.group.tdedge" label="TrackDesigner Edges">
+            <tools xsi:type="tool_1:EdgeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.edge.creation.connects" label="Connect ConnectionPoint" edgeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@edgeMappings[name='hu.bme.mint.inf.gomrp.railways.dsl.design.edge.connectsto']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/dash_arrow.png">
+              <sourceVariable name="source"/>
+              <targetVariable name="target"/>
+              <sourceViewVariable name="sourceView"/>
+              <targetViewVariable name="targetView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:SetValue" featureName="connectsTo" valueExpression="var:target"/>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:EdgeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.edge.creation.hsignal" label="Connect Signal" edgeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@edgeMappings[name='hu.bme.mint.inf.gomrp.railways.dsl.design.edge.holds']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/gray_arrow.png">
+              <sourceVariable name="source"/>
+              <targetVariable name="target"/>
+              <sourceViewVariable name="sourceView"/>
+              <targetViewVariable name="targetView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:SetValue" featureName="holds" valueExpression="var:target"/>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:EdgeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.edge.creation.nelement" label="Connect NextElement" edgeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@edgeMappings[name='hu.bme.mint.inf.gomrp.railways.dsl.design.edge.nextelement']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/dash_arrow.png">
+              <sourceVariable name="source"/>
+              <targetVariable name="target"/>
+              <sourceViewVariable name="sourceView"/>
+              <targetViewVariable name="targetView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:SetValue" featureName="nextElement" valueExpression="var:target"/>
+              </initialOperation>
+            </tools>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ToolGroup" name="hu.bme.mit.inf.gomrp.railway.dsl.design.group.tdrc" label="TrackDesigner ReconnectEdges">
+            <tools xsi:type="tool_1:ReconnectEdgeDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.reconnect.holdst" label="Reconnect Signal Target" forceRefresh="true">
+              <source name="source"/>
+              <target name="target"/>
+              <sourceView name="sourceView"/>
+              <targetView name="targetView"/>
+              <element name="element"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:Unset" featureName="holds" elementExpression="var:source">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="holds" valueExpression="var:target"/>
+                </firstModelOperations>
+              </initialOperation>
+              <edgeView name="edgeView"/>
+            </tools>
+            <tools xsi:type="tool_1:ReconnectEdgeDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.reconnect.cpt" label="Reconnect ConnectionPoint Target">
+              <source name="source"/>
+              <target name="target"/>
+              <sourceView name="sourceView"/>
+              <targetView name="targetView"/>
+              <element name="element"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:Unset" featureName="connectsTo" elementExpression="var:source">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="connectsTo" valueExpression="var:target"/>
+                </firstModelOperations>
+              </initialOperation>
+              <edgeView name="edgeView"/>
+            </tools>
+            <tools xsi:type="tool_1:ReconnectEdgeDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.reconnect.net" label="Reconnect NextElement Target">
+              <source name="source"/>
+              <target name="target"/>
+              <sourceView name="sourceView"/>
+              <targetView name="targetView"/>
+              <element name="element"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:Unset" featureName="nextElement" elementExpression="var:source">
+                  <subModelOperations xsi:type="tool:SetValue" featureName="nextElement" valueExpression="var:target"/>
+                </firstModelOperations>
+              </initialOperation>
+              <edgeView name="edgeView"/>
+            </tools>
+            <tools xsi:type="tool_1:ReconnectEdgeDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.reconnect.holdss" label="Reconnect Signal Source" forceRefresh="true" reconnectionKind="RECONNECT_SOURCE">
+              <source name="source"/>
+              <target name="target"/>
+              <sourceView name="sourceView"/>
+              <targetView name="targetView"/>
+              <element name="element"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.holdss" label="Reconnect Signal Source Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.holdss">
+                  <parameters name="source" value="var:source"/>
+                  <parameters name="target" value="var:target"/>
+                </firstModelOperations>
+              </initialOperation>
+              <edgeView name="edgeView"/>
+            </tools>
+            <tools xsi:type="tool_1:ReconnectEdgeDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.reconnect.cps" label="Reconnect ConnectionPoint Source" reconnectionKind="RECONNECT_SOURCE">
+              <source name="source"/>
+              <target name="target"/>
+              <sourceView name="sourceView"/>
+              <targetView name="targetView"/>
+              <element name="element"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.cps" label=" Reconnect ConnectionPoint Source Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.cps">
+                  <parameters name="source" value="var:source"/>
+                  <parameters name="target" value="var:target"/>
+                  <parameters name="edge" value="var:edgeView"/>
+                </firstModelOperations>
+              </initialOperation>
+              <edgeView name="edgeView"/>
+            </tools>
+            <tools xsi:type="tool_1:ReconnectEdgeDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.reconnect.nes" label="Reconnect NextElement Source" reconnectionKind="RECONNECT_SOURCE">
+              <source name="source"/>
+              <target name="target"/>
+              <sourceView name="sourceView"/>
+              <targetView name="targetView"/>
+              <element name="element"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.nes" label="Reconnect NextElement Source Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.nes">
+                  <parameters name="source" value="var:source"/>
+                  <parameters name="target" value="var:target"/>
+                </firstModelOperations>
+              </initialOperation>
+              <edgeView name="edgeView"/>
+            </tools>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ToolGroup" name="hu.bme.mit.inf.gomrp.railway.dsl.design.group.tddedge" label="TrackDesigner DeleteEdges">
+            <tools xsi:type="tool_1:DeleteElementDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.delete.ne" label="Delete NextElement">
+              <element name="element"/>
+              <elementView name="elementView"/>
+              <containerView name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:Unset" featureName="nextElement"/>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:DeleteElementDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.delete.holds" label="Delete Holds Signal">
+              <element name="element"/>
+              <elementView name="elementView"/>
+              <containerView name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:Unset" featureName="holds"/>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:DeleteElementDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.delete.connectsto" label="Delete ConnectsTo">
+              <element name="element"/>
+              <elementView name="elementView"/>
+              <containerView name="containerView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.dconto" label="Delete ConnectsTo Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.dconto">
+                  <parameters name="source" value="var:element"/>
+                  <parameters name="edge" value="var:elementView"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:NodeCreationDescription" name="hu.bme.mit.inf.gomrp.railway.dsl.design.node.creation.crailwayline" label="Construct Railway Line" nodeMappings="//@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.section'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.connectionpoint'] //@ownedViewpoints[name='hu.bme.mit.inf.gomrp.railway.dsl.design.viewpoint.railway']/@ownedRepresentations[name='hu.bme.mit.inf.gomrp.railway.dsl.design.diagram.railway']/@additionalLayers[name='hu.bme.mit.inf.gomrp.railway.dsl.design.layer.trackdesign']/@nodeMappings[name='hu.bme.mit.inf.gomrp.railway.dsl.design.node.signal']" iconPath="hu.bme.mit.inf.gomrp.railway.dsl.design/icons/hammer.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ExternalJavaAction" name="hu.bme.mit.inf.gomrp.railway.dsl.design.jactions.crailwayline" label="RailwayLine Action" id="hu.bme.mit.inf.gomrp.railway.dsl.design.javaactions.crailwayline">
+                <parameters name="container" value="var:container"/>
+                <parameters name="containerView" value="var:containerView"/>
+                <parameters name="selecteditem"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </additionalLayers>
+    </ownedRepresentations>
+  </ownedViewpoints>
+</description:Group>

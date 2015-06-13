@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="RDM" nsURI="hu.bme.mit.inf.gomrp.railway" nsPrefix="hu.bme.mit.inf.gomrp.railway">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="settingDelegates" value="org.eclipse.incquery.querybasedfeature"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="RailwayDomainModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="trains" lowerBound="2"
+        upperBound="-1" eType="#//Train" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sections" lowerBound="3"
+        upperBound="-1" eType="#//Section" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="turnouts" lowerBound="2"
+        upperBound="-1" eType="#//Turnout" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="editorCP" upperBound="-1"
+        eType="#//ConnectionPoint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="editorSignal" upperBound="-1"
+        eType="#//Signal" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="editorTDD" upperBound="-1"
+        eType="#//TurnoutDesiredDirection" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="editorRoute" upperBound="-1"
+        eType="#//Route" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="editorRouteElement" upperBound="-1"
+        eType="#//RouteElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Train" eSuperTypes="#//RDMElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="headingSpeed" lowerBound="1"
+        eType="#//Speed"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxSpeed" lowerBound="1"
+        eType="#//Speed"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arrivesTo" lowerBound="1"
+        eType="#//Station"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="departuresFrom" lowerBound="1"
+        eType="#//Station"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="follows" lowerBound="1"
+        eType="#//Route" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="standsOn" lowerBound="1"
+        upperBound="2" eType="#//TrackElement" eOpposite="#//TrackElement/occupiedBy"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Signal" eSuperTypes="#//RDMElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowedSpeed" lowerBound="1"
+        eType="#//Speed"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="standsOn" eType="#//ConnectionPoint"
+        eOpposite="#//ConnectionPoint/holds"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="observes" lowerBound="1"
+        eType="#//TrackElement" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="org.eclipse.incquery.querybasedfeature">
+        <details key="patternFQN" value="hu.bme.mit.inf.gomrp.railway.incquery.observes"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TrackElement" abstract="true" eSuperTypes="#//RDMElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectsTo" lowerBound="1"
+        upperBound="3" eType="#//ConnectionPoint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="occupiedBy" ordered="false"
+        eType="#//Train" eOpposite="#//Train/standsOn"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Route" eSuperTypes="#//RDMElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="firstElement" lowerBound="1"
+        eType="#//RouteElement" containment="true" eOpposite="#//RouteElement/belongsTo"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RDMElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Section" eSuperTypes="#//TrackElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Turnout" eSuperTypes="#//TrackElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="currentDirection" eType="#//TurnoutDirection"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="switchingDirection" eType="#//TurnoutDirection"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TurnoutDesiredDirection" eSuperTypes="#//RDMElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredTurnout" lowerBound="1"
+        eType="#//Turnout" changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="org.eclipse.incquery.querybasedfeature">
+        <details key="patternFQN" value="hu.bme.mit.inf.gomrp.railway.incquery.referredTurnout"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="desiredDirection" eType="#//TurnoutDirection"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="routeElement" eType="#//RouteElement"
+        eOpposite="#//RouteElement/desiredDirection"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Station" eSuperTypes="#//Section">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="controls" lowerBound="1"
+        upperBound="2" eType="#//Signal" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="org.eclipse.incquery.querybasedfeature">
+        <details key="patternFQN" value="hu.bme.mit.inf.gomrp.railway.incquery.controls"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Speed">
+    <eLiterals name="ZERO" literal="ZERO"/>
+    <eLiterals name="TWENTY" value="20"/>
+    <eLiterals name="FOURTY" value="40"/>
+    <eLiterals name="SIXTY" value="60"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TurnoutDirection">
+    <eLiterals name="LEFT"/>
+    <eLiterals name="RIGHT" value="1"/>
+    <eLiterals name="STRAIGHT" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ConnectionDirection">
+    <eLiterals name="LEFT"/>
+    <eLiterals name="RIGHT" value="1"/>
+    <eLiterals name="STRAIGHT" value="2"/>
+    <eLiterals name="TOP" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConnectionPoint" eSuperTypes="#//RDMElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" lowerBound="1"
+        eType="#//ConnectionDirection"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="holds" lowerBound="1" eType="#//Signal"
+        containment="true" eOpposite="#//Signal/standsOn"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nextElement" lowerBound="1"
+        eType="#//TrackElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RouteElement" eSuperTypes="#//RDMElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredElement" lowerBound="1"
+        eType="#//TrackElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="desiredDirection" eType="#//TurnoutDesiredDirection"
+        containment="true" eOpposite="#//TurnoutDesiredDirection/routeElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="belongsTo" eType="#//Route"
+        eOpposite="#//Route/firstElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nextElement" eType="#//RouteElement"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TurnoutSignal" eSuperTypes="#//Signal">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="turnout" lowerBound="1"
+        eType="#//Turnout"/>
+  </eClassifiers>
+</ecore:EPackage>

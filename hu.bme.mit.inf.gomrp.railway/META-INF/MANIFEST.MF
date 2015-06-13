@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: hu.bme.mit.inf.gomrp.railway;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: .
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: GoMRP
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: hu.bme.mit.inf.gomrp.railway.RDM,
+ hu.bme.mit.inf.gomrp.railway.RDM.impl,
+ hu.bme.mit.inf.gomrp.railway.RDM.util

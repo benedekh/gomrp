@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hu.bme.mit.inf.gomrp.railway:RailwayDomainModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hu.bme.mit.inf.gomrp.railway="hu.bme.mit.inf.gomrp.railway">
+  <trains name="Thomas" length="1" maxSpeed="TWENTY" arrivesTo="//@sections.10" departuresFrom="//@sections.8" standsOn="//@sections.8">
+    <follows name="R1" length="28">
+      <firstElement name="RE1" length="3" referredElement="//@sections.8">
+        <nextElement name="RE2" length="1" referredElement="//@turnouts.4">
+          <desiredDirection name="TDD1" desiredDirection="STRAIGHT"/>
+          <nextElement name="RE3" length="2" referredElement="//@sections.6">
+            <nextElement name="RE4" length="1" referredElement="//@turnouts.3">
+              <desiredDirection name="TDD2"/>
+              <nextElement name="RE5" length="1" referredElement="//@turnouts.2">
+                <desiredDirection name="TDD3"/>
+                <nextElement name="RE6" length="2" referredElement="//@sections.9">
+                  <nextElement name="RE7" length="1" referredElement="//@turnouts.5">
+                    <desiredDirection name="TDD4"/>
+                    <nextElement name="RE8" length="2" referredElement="//@sections.14">
+                      <nextElement name="RE9" length="2" referredElement="//@sections.13">
+                        <nextElement name="RE27" length="1" referredElement="//@turnouts.6">
+                          <desiredDirection name="TDD"/>
+                          <nextElement name="RE28" length="2" referredElement="//@sections.11">
+                            <nextElement name="RE10" length="1" referredElement="//@turnouts.6">
+                              <desiredDirection name="TDD5" desiredDirection="STRAIGHT"/>
+                              <nextElement name="RE11" length="2" referredElement="//@sections.12">
+                                <nextElement name="RE12" length="1" referredElement="//@turnouts.3">
+                                  <desiredDirection name="TDD6" desiredDirection="STRAIGHT"/>
+                                  <nextElement name="RE13" length="1" referredElement="//@turnouts.2">
+                                    <desiredDirection name="TDD7"/>
+                                    <nextElement name="RE14" length="1" referredElement="//@turnouts.3">
+                                      <desiredDirection name="TDD8" desiredDirection="STRAIGHT"/>
+                                      <nextElement name="RE15" length="2" referredElement="//@sections.6">
+                                        <nextElement name="RE16" length="1" referredElement="//@turnouts.4">
+                                          <desiredDirection name="TDD9" desiredDirection="STRAIGHT"/>
+                                          <nextElement name="RE17" length="3" referredElement="//@sections.8"/>
+                                        </nextElement>
+                                      </nextElement>
+                                    </nextElement>
+                                  </nextElement>
+                                </nextElement>
+                              </nextElement>
+                            </nextElement>
+                          </nextElement>
+                        </nextElement>
+                      </nextElement>
+                    </nextElement>
+                  </nextElement>
+                </nextElement>
+              </nextElement>
+            </nextElement>
+          </nextElement>
+        </nextElement>
+      </firstElement>
+    </follows>
+  </trains>
+  <trains name="James" length="1" maxSpeed="FOURTY" arrivesTo="//@sections.10" departuresFrom="//@sections.10" standsOn="//@sections.10">
+    <follows name="R2" length="17">
+      <firstElement name="RE18" length="3" referredElement="//@sections.10">
+        <nextElement name="RE19" length="2" referredElement="//@sections.11">
+          <nextElement name="RE20" length="1" referredElement="//@turnouts.6">
+            <desiredDirection name="TDD10"/>
+            <nextElement name="RE21" length="2" referredElement="//@sections.13">
+              <nextElement name="RE22" length="2" referredElement="//@sections.14">
+                <nextElement name="RE23" length="1" referredElement="//@turnouts.5">
+                  <desiredDirection name="TDD11"/>
+                  <nextElement name="RE24" length="2" referredElement="//@sections.9">
+                    <nextElement name="RE25" length="1" referredElement="//@turnouts.5">
+                      <desiredDirection name="TDD12" desiredDirection="STRAIGHT"/>
+                      <nextElement name="RE26" length="3" referredElement="//@sections.10"/>
+                    </nextElement>
+                  </nextElement>
+                </nextElement>
+              </nextElement>
+            </nextElement>
+          </nextElement>
+        </nextElement>
+      </firstElement>
+    </follows>
+  </trains>
+  <sections name="Sec1" length="2">
+    <connectsTo name="CP1" direction="STRAIGHT" nextElement="//@sections.2">
+      <holds name="Sig1"/>
+    </connectsTo>
+    <connectsTo name="CP2" direction="TOP" nextElement="//@turnouts.0">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig2" turnout="//@turnouts.0"/>
+    </connectsTo>
+  </sections>
+  <sections name="Sec2" length="2">
+    <connectsTo name="CP3" direction="STRAIGHT" nextElement="//@sections.3">
+      <holds name="Sig3"/>
+    </connectsTo>
+    <connectsTo name="CP4" direction="TOP" nextElement="//@turnouts.0">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig4" turnout="//@turnouts.0"/>
+    </connectsTo>
+  </sections>
+  <sections name="Sec3" length="2">
+    <connectsTo name="CP8" direction="STRAIGHT" nextElement="//@sections.0">
+      <holds name="Sig8"/>
+    </connectsTo>
+    <connectsTo name="CP9" direction="TOP" nextElement="//@turnouts.1">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig9" turnout="//@turnouts.1"/>
+    </connectsTo>
+  </sections>
+  <sections name="Sec4" length="2">
+    <connectsTo name="CP10" direction="STRAIGHT" nextElement="//@turnouts.1">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig10" turnout="//@turnouts.1"/>
+    </connectsTo>
+    <connectsTo name="CP11" direction="TOP" nextElement="//@sections.1">
+      <holds name="Sig11"/>
+    </connectsTo>
+  </sections>
+  <sections name="Sec5" length="2">
+    <connectsTo name="CP12" direction="TOP" nextElement="//@sections.7">
+      <holds name="Sig12"/>
+    </connectsTo>
+    <connectsTo name="CP13" direction="STRAIGHT" nextElement="//@turnouts.0">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig13" turnout="//@turnouts.0"/>
+    </connectsTo>
+  </sections>
+  <sections name="Sec6" length="2">
+    <connectsTo name="CP17" direction="STRAIGHT" nextElement="//@turnouts.2">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig17" turnout="//@turnouts.2"/>
+    </connectsTo>
+    <connectsTo name="CP18" direction="TOP" nextElement="//@turnouts.1">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig18" turnout="//@turnouts.1"/>
+    </connectsTo>
+  </sections>
+  <sections name="Sec7" length="2">
+    <connectsTo name="CP25" direction="STRAIGHT" nextElement="//@turnouts.4">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig25" turnout="//@turnouts.4"/>
+    </connectsTo>
+    <connectsTo name="CP26" direction="TOP" nextElement="//@turnouts.3">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig26" turnout="//@turnouts.3"/>
+    </connectsTo>
+  </sections>
+  <sections name="Sec8" length="2">
+    <connectsTo name="CP27" direction="STRAIGHT" nextElement="//@sections.4">
+      <holds name="Sig27"/>
+    </connectsTo>
+    <connectsTo name="CP28" direction="TOP" nextElement="//@turnouts.4">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig28" turnout="//@turnouts.4"/>
+    </connectsTo>
+  </sections>
+  <sections xsi:type="hu.bme.mit.inf.gomrp.railway:Station" name="ST1" length="3" occupiedBy="//@trains.0">
+    <connectsTo name="CP32" direction="STRAIGHT" nextElement="//@turnouts.4">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig32" turnout="//@turnouts.4"/>
+    </connectsTo>
+  </sections>
+  <sections name="Sec10" length="2">
+    <connectsTo name="CP33" direction="STRAIGHT" nextElement="//@turnouts.2">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig33" turnout="//@turnouts.2"/>
+    </connectsTo>
+    <connectsTo name="CP34" direction="TOP" nextElement="//@turnouts.5">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig34" turnout="//@turnouts.5"/>
+    </connectsTo>
+  </sections>
+  <sections xsi:type="hu.bme.mit.inf.gomrp.railway:Station" name="ST2" length="3" occupiedBy="//@trains.1">
+    <connectsTo name="CP38" direction="STRAIGHT" nextElement="//@turnouts.5">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig38" turnout="//@turnouts.5"/>
+    </connectsTo>
+    <connectsTo name="CP39" direction="TOP" nextElement="//@sections.11">
+      <holds name="Sig39"/>
+    </connectsTo>
+  </sections>
+  <sections name="Sec12" length="2">
+    <connectsTo name="CP40" direction="STRAIGHT" nextElement="//@sections.10">
+      <holds name="Sig40"/>
+    </connectsTo>
+    <connectsTo name="CP41" direction="TOP" nextElement="//@turnouts.6">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig41" turnout="//@turnouts.6"/>
+    </connectsTo>
+  </sections>
+  <sections name="Sec14" length="2">
+    <connectsTo name="CP44" direction="STRAIGHT" nextElement="//@turnouts.3">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig44" turnout="//@turnouts.3"/>
+    </connectsTo>
+    <connectsTo name="CP45" direction="TOP" nextElement="//@turnouts.6">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig45" turnout="//@turnouts.6"/>
+    </connectsTo>
+  </sections>
+  <sections name="Sec15" length="2">
+    <connectsTo name="CP49" direction="STRAIGHT" nextElement="//@sections.14">
+      <holds name="Sig49"/>
+    </connectsTo>
+    <connectsTo name="CP50" direction="TOP" nextElement="//@turnouts.6">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig50" turnout="//@turnouts.6"/>
+    </connectsTo>
+  </sections>
+  <sections name="Sec13" length="2">
+    <connectsTo name="CP42" direction="STRAIGHT" nextElement="//@turnouts.5">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig42" turnout="//@turnouts.5"/>
+    </connectsTo>
+    <connectsTo name="CP43" direction="TOP" nextElement="//@sections.13">
+      <holds name="Sig43"/>
+    </connectsTo>
+  </sections>
+  <turnouts name="TO1" length="1" currentDirection="RIGHT" switchingDirection="RIGHT">
+    <connectsTo name="CP5" direction="TOP" nextElement="//@sections.0">
+      <holds name="Sig5"/>
+    </connectsTo>
+    <connectsTo name="CP6" direction="RIGHT" nextElement="//@sections.1">
+      <holds name="Sig6"/>
+    </connectsTo>
+    <connectsTo name="CP7" direction="STRAIGHT" nextElement="//@sections.4">
+      <holds name="Sig7"/>
+    </connectsTo>
+  </turnouts>
+  <turnouts name="TO2" length="1">
+    <connectsTo name="CP14" direction="TOP" nextElement="//@sections.5">
+      <holds name="Sig14"/>
+    </connectsTo>
+    <connectsTo name="CP15" nextElement="//@sections.3">
+      <holds name="Sig15"/>
+    </connectsTo>
+    <connectsTo name="CP16" direction="STRAIGHT" nextElement="//@sections.2">
+      <holds name="Sig16"/>
+    </connectsTo>
+  </turnouts>
+  <turnouts name="TO3" length="1">
+    <connectsTo name="CP19" direction="TOP" nextElement="//@turnouts.3">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig19" turnout="//@turnouts.3"/>
+    </connectsTo>
+    <connectsTo name="CP20" nextElement="//@sections.9">
+      <holds name="Sig20"/>
+    </connectsTo>
+    <connectsTo name="CP21" direction="STRAIGHT" nextElement="//@sections.5">
+      <holds name="Sig21"/>
+    </connectsTo>
+  </turnouts>
+  <turnouts name="TO4" length="1">
+    <connectsTo name="CP22" direction="TOP" nextElement="//@turnouts.2">
+      <holds xsi:type="hu.bme.mit.inf.gomrp.railway:TurnoutSignal" name="TSig22" turnout="//@turnouts.2"/>
+    </connectsTo>
+    <connectsTo name="CP23" nextElement="//@sections.6">
+      <holds name="Sig23"/>
+    </connectsTo>
+    <connectsTo name="CP24" direction="STRAIGHT" nextElement="//@sections.12">
+      <holds name="Sig24"/>
+    </connectsTo>
+  </turnouts>
+  <turnouts name="TO5" length="1" currentDirection="RIGHT" switchingDirection="RIGHT">
+    <connectsTo name="CP29" direction="TOP" nextElement="//@sections.6">
+      <holds name="Sig29"/>
+    </connectsTo>
+    <connectsTo name="CP30" direction="RIGHT" nextElement="//@sections.7">
+      <holds name="Sig30"/>
+    </connectsTo>
+    <connectsTo name="CP31" direction="STRAIGHT" nextElement="//@sections.8">
+      <holds name="Sig31"/>
+    </connectsTo>
+  </turnouts>
+  <turnouts name="TO6" length="1">
+    <connectsTo name="CP35" direction="TOP" nextElement="//@sections.9">
+      <holds name="Sig35"/>
+    </connectsTo>
+    <connectsTo name="CP36" nextElement="//@sections.14">
+      <holds name="Sig36"/>
+    </connectsTo>
+    <connectsTo name="CP37" direction="STRAIGHT" nextElement="//@sections.10">
+      <holds name="Sig37"/>
+    </connectsTo>
+  </turnouts>
+  <turnouts name="TO7" length="1">
+    <connectsTo name="CP46" direction="TOP" nextElement="//@sections.11">
+      <holds name="Sig46"/>
+    </connectsTo>
+    <connectsTo name="CP47" nextElement="//@sections.13">
+      <holds name="Sig47"/>
+    </connectsTo>
+    <connectsTo name="CP48" direction="STRAIGHT" nextElement="//@sections.12">
+      <holds name="Sig48"/>
+    </connectsTo>
+  </turnouts>
+</hu.bme.mit.inf.gomrp.railway:RailwayDomainModel>

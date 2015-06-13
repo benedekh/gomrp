@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: hu.bme.mit.inf.gomrp.simulation.traceability;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: GoMRP
+Bundle-Localization: plugin
+Bundle-Activator: hu.bme.mit.inf.gomrp.simulation.traceability.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ hu.bme.mit.inf.gomrp.railway;bundle-version="0.1.0";visibility:=reexport,
+ hu.bme.mit.inf.gomrp.statemachine;bundle-version="0.1.0";visibility:=reexport,
+ com.google.guava,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtend.lib,
+ org.eclipse.xtend.lib.macro,
+ org.eclipse.emf.ecore.xmi;bundle-version="2.10.2"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: hu.bme.mit.inf.gomrp.simulation.traceability.MRPTraceability,
+ hu.bme.mit.inf.gomrp.simulation.traceability.MRPTraceability.impl,
+ hu.bme.mit.inf.gomrp.simulation.traceability.MRPTraceability.util
+Bundle-ActivationPolicy: lazy
+

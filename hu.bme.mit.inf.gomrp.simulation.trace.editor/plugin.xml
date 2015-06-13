@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated MRPTrace -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="hu.bme.mit.inf.gomrp.simulation.trace.MRPTrace.presentation.MRPTraceModelWizardID"
+            name="%_UI_MRPTraceModelWizard_label"
+            class="hu.bme.mit.inf.gomrp.simulation.trace.MRPTrace.presentation.MRPTraceModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/MRPTraceModelFile.gif">
+         <description>%_UI_MRPTraceModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated MRPTrace -->
+      <editor
+            id="hu.bme.mit.inf.gomrp.simulation.trace.MRPTrace.presentation.MRPTraceEditorID"
+            name="%_UI_MRPTraceEditor_label"
+            icon="icons/full/obj16/MRPTraceModelFile.gif"
+            extensions="mrptrace"
+            class="hu.bme.mit.inf.gomrp.simulation.trace.MRPTrace.presentation.MRPTraceEditor"
+            contributorClass="hu.bme.mit.inf.gomrp.simulation.trace.MRPTrace.presentation.MRPTraceActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

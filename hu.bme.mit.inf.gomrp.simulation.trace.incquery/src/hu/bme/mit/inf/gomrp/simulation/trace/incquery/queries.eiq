@@ -1,0 +1,33 @@
+package hu.bme.mit.inf.gomrp.simulation.trace.incquery
+
+import "hu.bme.mit.inf.gomrp.simulation.trace"
+
+/**
+ * IncQuery constraints patterns for the Trace metamodel.
+ */
+
+/*
+ * ID: C1
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Event must be unique!", location = e1)
+pattern eventMustBeUnique(e1 : Event, e2 : Event) {
+	Event.name(e1, name);
+	Event.name(e2, name);
+	Event.time(e1, time);
+	Event.time(e2, time);
+	e1 != e2;
+}
+
+/*
+ * ID: C2
+ */
+@Constraint(targetEditorId = "*", severity = "error", message = "Trace entry must be unique!", location = e1)
+pattern traceEntryMustBeUnique(e1 : TraceEntry, e2 : TraceEntry) {
+	TraceEntry.description(e1, desc);
+	TraceEntry.description(e2, desc);
+	TraceEntry.cause(e1, cause1);
+	Event.time(cause1, time);
+	TraceEntry.cause(e2, cause2);
+	Event.time(cause2, time);
+	e1 != e2;
+}
