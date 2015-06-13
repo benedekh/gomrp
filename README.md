@@ -38,3 +38,8 @@ Roadmap
 Extension plans:
 * Iteratively build the Traceability model during code generation (the metamodel has already been designed with additional IncQuery constraints).
 * Extend the TraceVisualizer to handle other track layouts as well.
+
+Related projects
+----------------
+
+* Pineapple Dataflow Net Modeler - a homework for the same MDSD course last year (a Dataflow Net Modeler tool, http://github.com/hajduakos/PineappleDataflowNet).
