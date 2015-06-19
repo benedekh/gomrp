@@ -42,4 +42,5 @@ Extension plans:
 Related projects
 ----------------
 
+* Sihuhu - another team's solution for the same homework (https://github.com/steindani/sihuhu)
 * Pineapple Dataflow Net Modeler - a homework for the same MDSD course last year (a Dataflow Net Modeler tool, http://github.com/hajduakos/PineappleDataflowNet).
